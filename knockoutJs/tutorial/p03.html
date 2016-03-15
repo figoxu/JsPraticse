@@ -19,7 +19,7 @@
 <table class="mails" data-bind="with: chosenFolderData">
     <thead><tr><th>From</th><th>To</th><th>Subject</th><th>Date</th></tr></thead>
     <tbody data-bind="foreach: mails">
-    <tr>
+    <tr  data-bind="click: $root.goToMail">
         <td data-bind="text: from"></td>
         <td data-bind="text: to"></td>
         <td data-bind="text: subject"></td>
@@ -28,22 +28,44 @@
     </tbody>
 </table>
 
+<!-- Chosen mail -->
+<div class="viewMail" data-bind="with: chosenMailData">
+    <div class="mailInfo">
+        <h1 data-bind="text: subject"></h1>
+        <p><label>From</label>: <span data-bind="text: from"></span></p>
+        <p><label>To</label>: <span data-bind="text: to"></span></p>
+        <p><label>Date</label>: <span data-bind="text: date"></span></p>
+    </div>
+    <p class="message" data-bind="html: messageContent" />
+</div>
+
 <script type="text/javascript">
     function WebmailViewModel() {
         // Data
         var self = this;
         self.folders = ['Inbox', 'Archive', 'Sent', 'Spam'];
+
         self.chosenFolderId = ko.observable();
         self.chosenFolderData = ko.observable();
+        self.chosenMailData = ko.observable();
 
         // Behaviours
         self.goToFolder = function(folder) {
-
             self.chosenFolderId(folder);
+            self.chosenMailData(null); // Stop showing a mail
             $.get('./data/'+folder+'.json', { folder: folder }, self.chosenFolderData);
         };
+
+
+        self.goToMail = function(mail) {
+            self.chosenFolderId(mail.folder);
+            self.chosenFolderData(null); // Stop showing a folder
+            $.get('./data/mainSample.json', { mailId: mail.id }, self.chosenMailData);
+        };
+
         // Show inbox by default
-        self.mails = self.goToFolder('Inbox');
+        self.goToFolder('Inbox');
+
     };
 
     ko.applyBindings(new WebmailViewModel());
