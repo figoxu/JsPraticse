@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title></title>
     <script src="../knockout-3.4.0.js">//</script>
+    <script src="./js/jquery.js">//</script>
     <link href="css/webmail.css" rel="stylesheet">
 </head>
 <body>
@@ -14,16 +15,35 @@
                click: $root.goToFolder"></li>
 </ul>
 
+<!-- Mails grid -->
+<table class="mails" data-bind="with: chosenFolderData">
+    <thead><tr><th>From</th><th>To</th><th>Subject</th><th>Date</th></tr></thead>
+    <tbody data-bind="foreach: mails">
+    <tr>
+        <td data-bind="text: from"></td>
+        <td data-bind="text: to"></td>
+        <td data-bind="text: subject"></td>
+        <td data-bind="text: date"></td>
+    </tr>
+    </tbody>
+</table>
+
 <script type="text/javascript">
     function WebmailViewModel() {
         // Data
         var self = this;
         self.folders = ['Inbox', 'Archive', 'Sent', 'Spam'];
         self.chosenFolderId = ko.observable();
-
+        self.chosenFolderData = ko.observable();
 
         // Behaviours
-        self.goToFolder = function(folder) { self.chosenFolderId(folder); };
+        self.goToFolder = function(folder) {
+
+            self.chosenFolderId(folder);
+            $.get('./data/'+folder+'.json', { folder: folder }, self.chosenFolderData);
+        };
+        // Show inbox by default
+        self.mails = self.goToFolder('Inbox');
     };
 
     ko.applyBindings(new WebmailViewModel());
