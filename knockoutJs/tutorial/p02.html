@@ -12,8 +12,13 @@
     <thead><tr>
         <th>Passenger name</th><th>Meal</th><th>Surcharge</th><th></th>
     </tr></thead>
-    <!-- Todo: Generate table body -->
-    <tbody></tbody>
+    <tbody data-bind="foreach: seats">
+        <tr>
+            <td data-bind="text: name"></td>
+            <td data-bind="text: meal().mealName"></td>
+            <td data-bind="text: meal().price"></td>
+        </tr>
+    </tbody>
 </table>
 <script type="text/javascript">
     // Class to represent a row in the seat reservations grid
