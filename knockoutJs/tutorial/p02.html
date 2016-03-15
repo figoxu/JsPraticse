@@ -25,7 +25,7 @@
 <h3 data-bind="visible: totalSurcharge() > 0">
     Total surcharge: $<span data-bind="text: totalSurcharge().toFixed(2)"></span>
 </h3>
-<button data-bind="click: addSeat">Reserve another seat</button>
+<button data-bind="click: addSeat, enable: seats().length < 5">Reserve another seat</button>
 
 <script type="text/javascript">
     // Class to represent a row in the seat reservations grid
