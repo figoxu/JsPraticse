@@ -17,6 +17,8 @@
             <td data-bind="text: name"></td>
             <td data-bind="text: meal().mealName"></td>
             <td data-bind="text: meal().price"></td>
+            <td><select data-bind="options: $root.availableMeals, value: meal, optionsText: 'mealName'"></select></td>
+            <td data-bind="text: formattedPrice"></td>
         </tr>
     </tbody>
 </table>
@@ -29,6 +31,11 @@
         var self = this;
         self.name = name;
         self.meal = ko.observable(initialMeal);
+
+        self.formattedPrice = ko.computed(function() {
+            var price = self.meal().price;
+            return price ? "$" + price.toFixed(2) : "None";
+        });
     }
 
     // Overall viewmodel for this screen, along with initial state
