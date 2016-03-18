@@ -19,6 +19,9 @@
 <body>
 <div style="text-align: center;padding: 10px;margin: 10px;">
     <button onclick="showMsg()">显示5秒的进度条</button>
+
+    <button onclick="customerMsg()">Custom Message</button>
+    <button onclick="dialogCb()">Dialog Callback</button>
 </div>
 
 <script type="text/javascript">
@@ -27,6 +30,20 @@
         setTimeout(function () {
             waitingDialog.hide();
         }, 5000);
+    }
+
+    function customerMsg(){
+        waitingDialog.show('Custom message', {dialogSize: 'sm', progressType: 'warning'});
+        setTimeout(function () {
+            waitingDialog.hide();
+        }, 2000);
+    }
+
+    function dialogCb(){
+        waitingDialog.show('Dialog with callback on hidden',{onHide: function () {alert('Callback!');}});
+        setTimeout(function () {
+            waitingDialog.hide();
+        }, 2000);
     }
 </script>
 </body>
