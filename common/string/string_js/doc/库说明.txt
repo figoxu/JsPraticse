@@ -1,0 +1,14 @@
+API说明
+http://stringjs.com/#installation
+
+
+https://github.com/jprichardson/string.js
+Extra JavaScript string methods. http://stringjs.com
+
+源码文件：
+https://github.com/jprichardson/string.js/blob/master/dist/string.js
+
+
+
+使用RequireJs进行加载
+https://github.com/requirejs/requirejs/blob/domReady/require.js

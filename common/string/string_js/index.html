@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="lib/string.js">//</script>
+    <script type="text/javascript">
+        var doesIt = S('my cool string').left(2).endsWith('y'); //true
+        console.log(" S('my cool string').left(2).endsWith('y')    ==>",doesIt);
+        var name = S('Your name is JP').right(2).s; //'JP'
+        console.log(" S('Your name is JP').right(2).s    ==>",name);
+        var name2 = S('Your name is JP').right(2).toString(); //'JP'
+        console.log("  S('Your name is JP').right(2).toString()    ==>",name2);
+
+
+        S.extendPrototype();
+        var name3 = 'Your name is JP'.right(2); //'JP'
+        console.log("  'Your name is JP'.right(2)    ==>",name3);
+        S.restorePrototype(); //be a good citizen and clean up
+        try{
+            var name4 = 'Your name is JP'.right(2); //'JP'
+            console.log("[restorePortotype]  'Your name is JP'.right(2)    ==>",name4);
+        }catch (e){
+            console.log("after restorPrototype,error was catch @err;",e)
+        }
+    </script>
+
+
+    <script type="text/javascript">
+        console.log("using string as constructor")
+        var c01 = S('hello').s //"hello"
+        console.log("S('hello').s "," ==> ",c01)
+        var c02 =  S(['a,b']).s //"a,b"
+        console.log("S(['a,b']).s  "," ==> ",c02)
+        var c03 = S({hi: 'jp'}).s //"[object Object]""
+        console.log("S({hi: 'jp'}).s  "," ==> ",c03)
+//        $({hi: 'jp'}).toCSV()
+    </script>
+
+
+
+
+    <script type="text/javascript">
+        S('<a>foo</a>').between('<a>', '</a>').s // => 'foo'
+        S('<a>foo</a></a>').between('<a>', '</a>').s // => 'foo'
+        S('<a><a>foo</a></a>').between('<a>', '</a>').s // => '<a>foo'
+        S('<a>foo').between('<a>', '</a>').s // => ''
+        S('Some strings } are very {weird}, dont you think?').between('{', '}').s // => 'weird'
+        S('This is a test string').between('test').s // => ' string'
+        S('This is a test string').between('', 'test').s // => 'This is a '
+    </script>
+</head>
+<body>
+
+</body>
+</html>
