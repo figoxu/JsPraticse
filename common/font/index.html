@@ -1,0 +1,39 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>javascript多页字体引用demo效果-同步</title>
+    <script type="text/javascript" src="./api.lib.min.js"></script>
+</head>
+<body>
+<div class="title" style="font-size: 30px">
+    早晨喝咖啡并不能醒脑
+</div>
+<div id="Text" style="font-size: 24px">
+    <p>
+        在某天醒来后，你用某品牌的滴漏咖啡壶给自己煮了一杯可疑的蓝山或是哥伦比亚咖啡，你加了点糖，加了点植脂末，混合嘴边没刷干净的牙膏沫一仰头一饮而尽，但是直到吃中饭前你还是觉得昏昏沉沉好像咖啡不再像以前那么管用了。你是对的——也有可能你只是欠睡，有点神经错乱。但是知道什么时候喝咖啡最能振奋自己是十分微秒的科学难题，不要再学傻子们清早一杯咖啡的习惯，他们是错的。
+    </p>
+    <p>
+        美国健康科学统一服务大学的Steven Miller在Gizmod发表了一篇文章告诉人们如何最大效率利用一杯咖啡给人带来的快乐，要点在于理解咖啡的药理学——也就是理解你身体的生物节律如何与咖啡因这种成瘾品相互作用。(咖啡因在美国依然被视作成瘾品)
+    </p>
+    <p>
+        你身体中最重要的节律是生物钟，24小时日夜循环，也可以通过外界因素进行调整，因此也叫授时因子。对喝咖啡成瘾的笔头工作的哺乳类动物，比如我们自己(原文)，最重要的授时因子就是光。
+    </p>
+    <p>
+        你体内的生物钟和授时因子会影响你身体产生皮质醇，也叫做压力荷尔蒙，可以让人保持警惕。大多数人血液中皮质醇含量在早上8点-9点达到顶点，然后在中午12点和1点再次到顶。如果你正处在皮质醇水平较高的时间，千万不要碰你的java。一天中的这些时间段人们最警觉，所以喝咖啡的效率最低。
+    </p>
+    <p>
+        这些时候往往是你身体最不需要咖啡因的时候，一直在这些时段喝咖啡只能增加你对咖啡因的耐受性。相反Miller教授建议大家在早上9:30-11：30这段时间喝咖啡，或者在下午1:30左右喝咖啡。
+    </p>
+    <p>
+        这是一个字体测试 ，参考文档：http://www.youziku.com/helpcenter/index#methodfastjs
+    </p>
+</div>
+<script type="text/javascript">
+    $youzikuapi.asyncLoad("http://api.youziku.com/webfont/FastJS/yzk_DC8FC74384290F33", function () {
+        $youziku.load(".title", "71df35b1-a7c2-4236-b17c-5dd574dbde20", "TianZhen");
+        $youziku.load("#Text", "f13ac22db4c243f3985417b385053eea", "HaTian-SuiXing");
+        $youziku.draw();
+    })
+</script>
+</body>
+</html>
