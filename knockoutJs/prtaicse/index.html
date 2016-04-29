@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../tutorial/js/jquery.js">//</script>
+    <script src="../knockout-3.4.0.js">//</script>
+    <script type="text/javascript">
+        function AppViewModel(obj) {
+            this.total = ko.observable(obj.total);
+        }
+
+        $(document).ready(function() {
+            rsp = $.ajax({url: "./data/1.json", async: false});
+            obj= $.parseJSON( rsp.responseText );
+            ko.applyBindings(new AppViewModel(obj));
+        })
+    </script>
+</head>
+<body>
+
+<p>Total : <strong data-bind="text: total"></strong></p>
+</body>
+</html>nin asdfasdf
