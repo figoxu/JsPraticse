@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="mustache.js">//</script>
+</head>
+<body>
+
+<div id="sampleArea">
+
+</div>
+
+<script id="personTpl" type="text/template">
+    <h1>{{firstName}} {{lastName}}</h1>
+    <p>Blog URL: <a href="{{blogURL}}">{{blogURL}}</a></p>
+</script>
+
+<script type="text/javascript">
+    function loadtemp(){
+        var template = $('#personTpl').html();
+        var data={
+            "firstName": "Lisa",
+            "lastName": "Jones",
+            "blogURL": "http://lisajones.com"
+        }
+        var html = Mustache.to_html(template, data);
+        $('#sampleArea').html(html);
+    }
+    window.setInterval(loadtemp(),1000)
+</script>
+</body>
+</html>
