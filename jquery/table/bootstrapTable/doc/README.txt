@@ -1,17 +1,17 @@
 
-bootstrap-table²å¼þ
+bootstrap-tableï¿½ï¿½ï¿½
 http://bootstrap-table.wenzhixin.net.cn/zh-cn/extensions/
 
-bootstrap-table·¶Àý
+bootstrap-tableï¿½ï¿½ï¿½ï¿½
 http://bootstrap-table.wenzhixin.net.cn/zh-cn/examples/
 
-·Ö×é
+ï¿½ï¿½ï¿½ï¿½
 http://jsfiddle.net/e3nk137y/4320/
 
-ÖÕ¼«·¶Àý
+ï¿½Õ¼ï¿½ï¿½ï¿½ï¿½ï¿½
 http://issues.wenzhixin.net.cn/bootstrap-table/welcome.html
 
-ÓÐµãÅå·þÕâ¸ö¸çÃÇ
+ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 http://wenzhixin.net.cn/
 
 
@@ -20,7 +20,7 @@ http://wenzhixin.net.cn/
 ===========
 
 
-Ë¢ÐÂÊý¾Ý
+Ë¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 https://github.com/wenzhixin/bootstrap-table-examples/blob/master/methods/refresh.html
         <div id="toolbar">
             <button id="button" class="btn btn-default">refresh</button>
@@ -32,5 +32,10 @@ https://github.com/wenzhixin/bootstrap-table-examples/blob/master/methods/refres
                 });
             });
 
-bootstrapTableµÄ±Ê¼Ç
+bootstrapTableï¿½Ä±Ê¼ï¿½
 http://www.cnblogs.com/kingdudu/p/4884872.html
+
+å‚è€ƒèµ„æ–™ï¼š
+C:\figo\delete_it\bootstrap-table-examples-master
+http://localhost:3000/#options/group-columns.html
+C:\figo\delete_it\bootstrap-table-examples-master>node app
