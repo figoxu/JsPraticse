@@ -5,9 +5,46 @@
     <title></title>
     <script src="../tutorial/js/jquery.js">//</script>
     <script src="../knockout-3.4.0.js">//</script>
+    <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.js"></script>
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
     <script type="text/javascript">
         function AppViewModel(obj) {
-            this.total = ko.observable(obj.total);
+            var self = this;
+            self.total = ko.observable(obj.total);
+            self.employeeList = ko.observable(obj.employeeList);
+
+
+            self.pageSize = ko.observable(10);
+            self.pageIndex = ko.observable(0);
+
+            self.maxPageIndex = ko.dependentObservable(function () {
+               return 15
+            });
+
+            self.previousPage = function () {
+                if (self.pageIndex() > 0) {
+                    self.pageIndex(self.pageIndex() - 1);
+                }
+                console.log("@previousPage:",self.pageIndex())
+            };
+            self.nextPage = function () {
+                if (self.pageIndex() < self.maxPageIndex()) {
+                    self.pageIndex(self.pageIndex() + 1);
+                }
+                console.log("@nextPage:",self.pageIndex())
+            };
+            self.allPages = ko.dependentObservable(function () {
+                var pages = [];
+                for (i = 0; i <= self.maxPageIndex() ; i++) {
+                    pages.push({ pageNumber: (i + 1) });
+                }
+                return pages;
+            });
+            self.moveToPage = function (index) {
+                self.pageIndex(index);
+                console.log("@moveToPage:",index);
+            };
         }
 
         $(document).ready(function() {
@@ -20,5 +57,30 @@
 <body>
 
 <p>Total : <strong data-bind="text: total"></strong></p>
+<div  data-bind="foreach: employeeList">
+    <div style="float:left;height: 200px;width:400px;overflow: auto;">
+        <img data-bind="attr: { src: $data.img }">
+        <div style="margin-bottom: 0px;">
+            <span data-bind="text: $data.id"></span>
+            <span data-bind="text: $data.name"></span>
+            <span data-bind="text: $data.img"></span>
+            <span data-bind="text: $data.desc"></span>
+        </div>
+    </div>
+</div>
+
+<div style="width: 100%;">
+    <ul class="pagination">
+        <li data-bind="css: { disabled: pageIndex() === 1 }"><a href="#" data-bind="click: previousPage">Previous</a></li>
+    </ul>
+    <ul class="pagination" data-bind="foreach: allPages">
+            <li data-bind="css: { active: $data.page === ($root.pageIndex()) }"><a href="#" data-bind="text: $data.pageNumber, click: function() { $root.moveToPage($data.pageNumber-1); }"></a></li>
+        </ul>
+        <ul class="pagination">
+        <li data-bind="css: { disabled: pageIndex() === maxPageIndex() }"><a href="#" data-bind="click: nextPage">Next</a></li>
+    </ul>
+</div>
+
+
 </body>
-</html>nin asdfasdf
+</html>

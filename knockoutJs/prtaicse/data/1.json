@@ -1,1 +1,73 @@
-{"total":153,"page":1,"pageSize":10,"employeeList":[{"id":1,"img":"/img/0.jpg","name":"姓名0","desc":"描述0"},{"id":2,"img":"/img/1.jpg","name":"姓名1","desc":"描述1"},{"id":3,"img":"/img/2.jpg","name":"姓名2","desc":"描述2"},{"id":4,"img":"/img/3.jpg","name":"姓名3","desc":"描述3"},{"id":5,"img":"/img/4.jpg","name":"姓名4","desc":"描述4"},{"id":6,"img":"/img/5.jpg","name":"姓名5","desc":"描述5"},{"id":7,"img":"/img/6.jpg","name":"姓名6","desc":"描述6"},{"id":8,"img":"/img/7.jpg","name":"姓名7","desc":"描述7"},{"id":9,"img":"/img/8.jpg","name":"姓名8","desc":"描述8"},{"id":10,"img":"/img/9.jpg","name":"姓名9","desc":"描述9"},{"id":11,"img":"/img/10.jpg","name":"姓名10","desc":"描述10"}]}
+{
+  "total": 153,
+  "page": 1,
+  "pageSize": 10,
+  "employeeList": [
+    {
+      "id": 1,
+      "img": "/JsPraticse/img/0.jpg",
+      "name": "姓名0",
+      "desc": "描述0"
+    },
+    {
+      "id": 2,
+      "img": "/JsPraticse/img/1.jpg",
+      "name": "姓名1",
+      "desc": "描述1"
+    },
+    {
+      "id": 3,
+      "img": "/JsPraticse/img/2.jpg",
+      "name": "姓名2",
+      "desc": "描述2"
+    },
+    {
+      "id": 4,
+      "img": "/JsPraticse/img/3.jpg",
+      "name": "姓名3",
+      "desc": "描述3"
+    },
+    {
+      "id": 5,
+      "img": "/JsPraticse/img/4.jpg",
+      "name": "姓名4",
+      "desc": "描述4"
+    },
+    {
+      "id": 6,
+      "img": "/JsPraticse/img/5.jpg",
+      "name": "姓名5",
+      "desc": "描述5"
+    },
+    {
+      "id": 7,
+      "img": "/JsPraticse/img/6.jpg",
+      "name": "姓名6",
+      "desc": "描述6"
+    },
+    {
+      "id": 8,
+      "img": "/JsPraticse/img/7.jpg",
+      "name": "姓名7",
+      "desc": "描述7"
+    },
+    {
+      "id": 9,
+      "img": "/JsPraticse/img/8.jpg",
+      "name": "姓名8",
+      "desc": "描述8"
+    },
+    {
+      "id": 10,
+      "img": "/JsPraticse/img/9.jpg",
+      "name": "姓名9",
+      "desc": "描述9"
+    },
+    {
+      "id": 11,
+      "img": "/JsPraticse/img/10.jpg",
+      "name": "姓名10",
+      "desc": "描述10"
+    }
+  ]
+}
