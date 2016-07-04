@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>Title</title>
     <script src="../tutorial/js/jquery.js">//</script>
     <script src="../knockout-3.4.0.js">//</script>
     <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
@@ -19,68 +19,105 @@
             self.pageIndex = ko.observable(0);
 
             self.maxPageIndex = ko.dependentObservable(function () {
-               return 15
+                return 15
             });
 
-            self.previousPage = function () {
-                if (self.pageIndex() > 0) {
-                    self.pageIndex(self.pageIndex() - 1);
-                }
-                console.log("@previousPage:",self.pageIndex())
-            };
-            self.nextPage = function () {
-                if (self.pageIndex() < self.maxPageIndex()) {
-                    self.pageIndex(self.pageIndex() + 1);
-                }
-                console.log("@nextPage:",self.pageIndex())
-            };
             self.allPages = ko.dependentObservable(function () {
                 var pages = [];
+                if(self.pageIndex()>0){
+                    pages.push({
+                        showTxt :"上一页",
+                        activeFlag:false,
+                        moveNum:self.pageIndex()-1
+                    });
+                }
                 for (i = 0; i <= self.maxPageIndex() ; i++) {
-                    pages.push({ pageNumber: (i + 1) });
+                    activeFlag = self.pageIndex() == i
+                    pages.push({
+                        showTxt :""+i,
+                        activeFlag:activeFlag,
+                        moveNum:i
+                    });
+                }
+                console.log("@pageIndex:",self.pageIndex()," @maxPageIndex:",self.maxPageIndex()," @result: self.pageIndex()<self.maxPageIndex() ::",(self.pageIndex()<self.maxPageIndex()))
+                if(self.pageIndex()<self.maxPageIndex()){
+                    pages.push({
+                        showTxt :"下一页",
+                        activeFlag:false,
+                        moveNum:self.pageIndex()+1
+                    });
                 }
                 return pages;
             });
             self.moveToPage = function (index) {
                 self.pageIndex(index);
-                console.log("@moveToPage:",index);
+                obj = loadDataByPage(index+1);
+                self.total(obj.total);
+                self.employeeList(obj.employeeList);
             };
         }
 
         $(document).ready(function() {
-            rsp = $.ajax({url: "./data/1.json", async: false});
-            obj= $.parseJSON( rsp.responseText );
+            obj = loadDataByPage(1)
             ko.applyBindings(new AppViewModel(obj));
         })
+
+        function loadDataByPage(page){
+            rsp = $.ajax({url: "./data/"+page+".json", async: false});
+            obj= $.parseJSON( rsp.responseText );
+            return obj;
+        }
     </script>
 </head>
 <body>
 
 <p>Total : <strong data-bind="text: total"></strong></p>
-<div  data-bind="foreach: employeeList">
-    <div style="float:left;height: 200px;width:400px;overflow: auto;">
-        <img data-bind="attr: { src: $data.img }">
-        <div style="margin-bottom: 0px;">
-            <span data-bind="text: $data.id"></span>
-            <span data-bind="text: $data.name"></span>
-            <span data-bind="text: $data.img"></span>
-            <span data-bind="text: $data.desc"></span>
+<div style="width: 100%;display: inline-block;" >
+    <div  data-bind="foreach: employeeList" id="main" >
+        <div class="box">
+            <img data-bind="attr: { src: $data.img }">
+            <div style="height: 40px;">
+                <span data-bind="text: $data.id"></span>
+                <span data-bind="text: $data.name"></span>
+                <span data-bind="text: $data.img"></span>
+                <span data-bind="text: $data.desc"></span>
+            </div>
         </div>
     </div>
-</div>
 
-<div style="width: 100%;">
-    <ul class="pagination">
-        <li data-bind="css: { disabled: pageIndex() === 1 }"><a href="#" data-bind="click: previousPage">Previous</a></li>
-    </ul>
-    <ul class="pagination" data-bind="foreach: allPages">
-            <li data-bind="css: { active: $data.page === ($root.pageIndex()) }"><a href="#" data-bind="text: $data.pageNumber, click: function() { $root.moveToPage($data.pageNumber-1); }"></a></li>
-        </ul>
-        <ul class="pagination">
-        <li data-bind="css: { disabled: pageIndex() === maxPageIndex() }"><a href="#" data-bind="click: nextPage">Next</a></li>
+</div>
+<div style="width: 100%;height: 15px;">
+    <ul class="pagination" data-bind="foreach: allPages" style="margin-top: 0px;">
+        <li data-bind="css: { active: $data.activeFlag }">
+            <a href="#" data-bind="text: $data.showTxt, click: function() { $root.moveToPage($data.moveNum); }"></a>
+        </li>
     </ul>
 </div>
 
-
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+    #main {
+        -webkit-column-count: 4;
+        -moz-column-count: 4;
+        column-count: 4;
+        -moz-column-gap:20px;
+        -webkit-column-gap:20px;
+        column-gap:20px;
+        padding: 10px;
+    }
+    .box {
+        padding: 15px;
+        border: solid 2px #eeeeee;
+        border-radius: 4px;
+        margin-bottom: 15px;
+        cursor: pointer;
+    }
+    .box img {
+        width: 100%;
+    }
+</style>
 </body>
 </html>
