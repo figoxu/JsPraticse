@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title></title>
+    <style>
+        table {
+            border: 1px solid black;
+            border-collapse: collapse;
+            width: 700px;
+        }
+        thead {
+            font-size: 15px;
+            font-weight: bold
+        }
+        tbody {
+            font-size: 15px;
+            font-weight: normal
+        }
+        td, th {
+            border: 1px solid black;
+            text-align: center;
+            padding: 10px;
+        }
+        td.hidden {
+            border-width: 0px;
+            padding: 0px;
+        }
+        td.hiddenTop {
+            border-top-width: 0px;
+        }
+    </style>
+</head>
+
+<body>
+
+<table>
+    <thead>
+    <tr>
+        <th>Student Name</th>
+        <th>Student Reg No.</th>
+        <th>Subject Name</th>
+        <th>Obtained Marks</th>
+        <th>Total Marks</th>
+        <th>Average Marks</th>
+    </tr>
+    </thead>
+    <tbody data-bind="foreach: students">
+    <tr>
+        <td data-bind="text: name, attr: { rowspan: rowSpan }"></td>
+        <td data-bind="text: regNo, attr: { rowspan: rowSpan }"></td>
+        <!--important to user class hidden to hide the cell-->
+        <td class="hidden"></td>
+        <td class="hidden"></td>
+        <td data-bind="text: totalMark(), attr: { rowspan: rowSpan }"></td>
+        <td data-bind="text: average(), attr: { rowspan: rowSpan }"></td>
+    </tr>
+
+    <!--knockout Containerless Binding-->
+    <!-- ko foreach: subjects -->
+    <tr>
+        <!--important to user class hiddenTop to hide top border-->
+        <td class="hiddenTop" data-bind="text: name"></td>
+        <td class="hiddenTop" data-bind="text: mark"></td>
+    </tr>
+    <!-- /ko -->
+    </tbody>
+</table>
+
+<script src="../tutorial/js/jquery.js">//</script>
+<script src="../knockout-3.4.0.js">//</script>
+<script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.js"></script>
+<link href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
+<script>
+    /*Models*/
+    function Subject(name, mark) {
+        this.name = name;
+        this.mark = parseFloat(mark).toFixed(2);
+    }
+
+    function Student(name, regNo, subjects) {
+        this.name = name;
+        this.regNo = regNo;
+        this.subjects = subjects;
+        this.totalMark = function() {
+            var total = parseFloat(0);
+            $.each(subjects, function(i) {
+                total += parseFloat(subjects[i].mark);
+            });
+            return parseFloat(total).toFixed(2);
+        };
+        this.average = function() {
+            var avg = this.totalMark() / parseFloat(subjects.length);
+            return parseFloat(avg).toFixed(2);
+        };
+        this.rowSpan = subjects.length + 1;             // + 1 is important
+    }
+
+    /*View Model*/
+    function ViewModel() {
+        var self = this;
+        self.students = ko.observableArray([]);
+
+        self.init = function () {
+            var subjects = [
+                new Subject('Math', 50),
+                new Subject('Physics', 50),
+                new Subject('Chemistry', 50)
+            ];
+            var students = [
+                new Student('Alan', 'Std-01', subjects),
+                new Student('Scott', 'Std-01', subjects),
+                new Student('John', 'Std-01', subjects)
+            ];
+            self.students(students);
+        };
+    }
+
+    /*binding view model*/
+    $(document).ready(function() {
+        var vm = new ViewModel();
+        vm.init();            //populates the binding data
+        ko.applyBindings(vm);
+    });
+</script>
+</body>
+</html>
