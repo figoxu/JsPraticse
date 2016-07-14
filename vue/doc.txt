@@ -1,0 +1,3 @@
+http://vuejs.github.io/vue-validator/zh-cn/events.html
+
+https://github.com/yuche/vue-strap
