@@ -3,15 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script type="text/javascript" src="../demo/js/greensock/plugins/CSSPlugin.min.js"></script>
+    <script type="text/javascript" src="../demo/js/greensock/TweenLite.min.js"></script>
     <script type="text/javascript">
         function moving(){
             var div1 = document.getElementById("div1");
             var div2 = document.getElementById("div2");
             var dsp = div1.style.display;
             if(dsp=="none"){
-
+                console.log("@dsp:",dsp);
+                TweenLite.fromTo(div1,1,{display:"none","z-index":1},{display:"block","z-index":-1});
+                window.setInterval(function(){
+                    TweenLite.fromTo(div2,1,{display:"block","z-index":-1},{display:"none","z-index":1});
+                },1000);
             }else{
-
+                console.log("@dsp:",dsp);
+                TweenLite.fromTo(div1,1,{display:"block","z-index":-1},{display:"none","z-index":1});
+                window.setInterval(function(){
+                    TweenLite.fromTo(div2,1,{display:"none","z-index":1},{display:"block","z-index":-1});
+                },1000);
             }
         }
     </script>
@@ -23,7 +33,7 @@
     <div style="width: 600px;height: 600px;background-color: pink;display: none;" id="div2"></div>
 </div>
 
-<button onclick="moving()"></button>
+<button onclick="moving()">移动</button>
 
 </body>
 </html>
