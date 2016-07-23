@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>GreenSock: Easing</title>
+    
+<style>
+body{
+	background-color:#000;
+}
+#demo {
+	width: 692px;
+	height: 60px;
+	background-color: #333;
+	padding: 8px;
+}
+#easeWrapper {
+	width: 500px;
+	margin-right: auto;
+	margin-left: auto;
+	border-right: 1px dashed #CCC;
+	border-left: 1px dashed #CCC;
+}
+#logo {
+	position: relative;
+	width: 60px;
+	height: 60px;
+	background: url(img/logo_black.jpg) no-repeat;
+}
+</style>
+</head>
+
+<body>
+<div id="demo">
+	<div id="easeWrapper">
+		<div id="logo"></div>
+    </div>
+</div>
+
+<script type="text/javascript" src="js/greensock/plugins/CSSPlugin.min.js"></script>
+<!--- Be sure to load EasePack if you want to use a specific ease -->
+<script type="text/javascript" src="js/greensock/easing/EasePack.min.js"></script>
+<script type="text/javascript" src="js/greensock/TweenLite.min.js"></script>
+
+<script>
+window.onload = function() {
+	var logo = document.getElementById("logo");
+	TweenLite.to(logo, 2, {left:"440px", ease:Bounce.easeOut});
+	
+	/* Tip: Try substituting the following eases:
+	Elastic.easeIn
+	Elastic.easeInout
+	Back.easeOut
+	Power1.easeOut
+	Power2.easeOut
+	Power3.easeOut
+	Power4.easeOut
+	SlowMo.ease
+	*/	
+}
+</script>
+
+</body>
+</html>
