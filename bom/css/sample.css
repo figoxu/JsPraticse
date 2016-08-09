@@ -1,0 +1,110 @@
+
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    font-family: '微软雅黑';
+    line-height: 30px;
+}
+li{
+    list-style: none;
+}
+.head{
+    width: 1200px;
+    height: 43px;
+    padding-top: 30px;
+    font-size: 20px;
+    margin: 0 auto;
+}
+.box{
+    width: 1200px;
+    height: auto;
+    margin: 0 auto;
+}
+.left{
+    display: inline-block;
+    float: left;
+    width: 120px;
+    height: auto;
+}
+.left li{
+    margin-top: 10px;
+    text-align: center;
+}
+.active{
+    background: #3399ff;
+    color: #fff;
+}
+.right{
+    width: 1000px;
+    height: 500px;
+    margin-top: 15px;
+    float: right;
+}
+.right h2{
+    font-weight: normal;
+    font-size: 36px;
+}
+.right p{
+    padding:20px 0;
+    color: #3399ff;
+    font-size: 20px;
+}
+.content{
+    width: 1000px;
+    height: 150px;
+}
+.c_L{
+    display: inline-block;
+    float: left;
+    width: 300px;
+    height: auto;
+}
+.c_R{
+    display: inline-block;
+    float: right;
+    line-height: 25px;
+    width: 300px;
+    height: auto;
+}
+.careers{
+    width: 1000px;
+    height: 250px;
+}
+
+
+.information{
+    margin-top: 25px;
+    width: 1000px;
+    height: auto;
+    margin-bottom: 30px;
+}
+.information ul{
+    width: 1000px;
+    height: 35px;
+}
+.information li{
+    display: inline-block;
+    float: left;
+    margin-right: 35px;
+}
+.weight{
+    font-weight: bold;
+}
+.pages a:link,.pages a:visited{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    text-decoration: none;
+    border: 1px solid #000;
+    color: #000;
+    text-align: center;
+    line-height: 30px;
+    margin-right: 5px;
+}
+.pages a:hover{
+    background: #3399ff;
+    border: 1px solid #3399ff;
+    color: #fff;;
+}

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./js/data.js" type="text/javascript">//</script>
+    <link rel="stylesheet" type="text/css" href="./css/sample.css" />
+    <script type="text/javascript">
+        window.onload = function(){
+            function getParams(){
+                var params = window.location.search;
+                params = params.replace("\?","");
+                var paramStrArray = params.split("&");
+                var params = {};
+                for(var i=0;i<paramStrArray.length;i++){
+                    var str = paramStrArray[i];
+                    var pairs = str.split("=");
+                    if(pairs.length<2){
+                        continue;
+                    }
+                    params[pairs[0]]=pairs[1];
+                }
+                return params;
+            }
+
+            function getHash(){
+                var hash = window.location.hash;
+                hash = hash.replace("#","");
+                return hash;
+            }
+
+            function genSHHtml(obj){
+                var content = "";
+                for(var i=0;i<obj.info.length;i++){
+                    var info = obj.info[i];
+                    for(var j=0;j<info.l.length;j++){
+                        content += info.l[j];
+                    }
+                }
+                var html = '<div class="information">' +
+                        '                    <ul>' +
+                        '                    <li class="weight">职位需求:'+obj.zw+'</li>' +
+                        '            <li class="weight">需求人数:'+obj.rs+'</li>' +
+                        '            <li>'+obj.sj[0]+'年'+obj.sj[1]+'月'+obj.sj[2]+'日</li>' +
+                        '        </ul>' +
+                        '            <div class="text">' +content +
+                        '            </div>' +
+                        '        </div>';
+                return html;
+            }
+
+            function getPagBar(pgTpl,pgStr,pageCount){
+                var html = ""
+                for(var i=0;i<pageCount;i++){
+                    var pgItem = pgTpl
+                    while (pgItem.indexOf(pgStr)!=-1){
+                        pgItem= pgItem.replace(pgStr,(i+1));
+                    }
+                    html += pgItem;
+                }
+                return html;
+            }
+
+            function getSHPage(){
+                var html = "<h2>"+aData.sh.imgText+"</h2>";
+                var shData = aData.sh.text;
+                var params = getParams();
+                var page = 1;
+                var pageSize=2;
+                var pageParam = parseInt(params["pg"]);
+                if( !isNaN(pageParam) ){
+                    page = pageParam
+                }
+                var start =(page-1)*pageSize;
+                var limit = start+pageSize;
+                limit = limit> shData.length ? shData.length : limit;
+                for(var i=start;i<limit;i++){
+                    var obj = shData[i];
+                    html += genSHHtml(obj);
+                }
+                var pageCount = parseInt( (shData.length+1)/pageSize );
+                html +='<p class="pages">'+getPagBar("<a href='sample.html?pg=__PGNO__#sh'>__PGNO__</a>","__PGNO__",pageCount)+'</p>';
+                return html;
+            }
+
+            function genXYHtml(obj){
+                var content = "";
+                for(var i=0;i<obj.info.length;i++){
+                    var info = obj.info[i];
+                    content += "<ul class='careers'>";
+                    content += "<li>"+info.t+"</li>";
+                    for(var j=0;j<info.l.length;j++){
+                        content += "<li>"+info.l[j]+"</li>";
+                    }
+                    content += "</ul>";
+                }
+
+                var html = '<p>'+obj.zw+'</p>' +
+                        '                    <div class="content">' +
+                        '                    <ul class="c_L">' +
+                        '                    <li>招聘公司：'+obj.gs+'</li>' +
+                        '            <li>招聘性质：'+obj.gz+'</li>' +
+                        '            <li>工作经验：'+obj.jy+'</li>' +
+                        '            <li>招聘人数：'+obj.rs+'</li>' +
+                        '            <li>发布日期：'+obj.sj[0]+'年'+obj.sj[1]+'月'+obj.sj[2]+'日</li>' +
+                        '        </ul>' +
+                        '            <ul class="c_R">' +
+                        '                <li>公司性质：'+obj.xz+'</li>' +
+                        '                <li>工作地点：'+obj.dd+'</li>' +
+                        '                <li>学历要求：'+obj.xl+'</li>' +
+                        '                <li>薪资待遇：'+obj.dy+'</li>' +
+                        '                <li>招聘类型：'+obj.lx+'</li>' +
+                        '            </ul>' +
+                        '        </div>' +content;
+                return html;
+            }
+            function getXYPage(){
+                var html = "<h2>"+aData.xy.imgText+"</h2>";
+                var xyData = aData.xy.text;
+                var params = getParams();
+                var page = 1;
+                var pageSize=2;
+                var pageParam = parseInt(params["pg"]);
+                if( !isNaN(pageParam) ){
+                    page = pageParam
+                }
+                var start =(page-1)*pageSize;
+                var limit = start+pageSize;
+                limit = limit> xyData.length ? xyData.length : limit;
+                for(var i=start;i<limit;i++){
+                    var obj = xyData[i];
+                    html += genXYHtml(obj);
+                }
+                var pageCount = parseInt( (xyData.length+1)/pageSize );
+                console.log("@length:",xyData.length," @pageCount:",pageCount)
+                html +='<p class="pages">'+getPagBar("<a href='sample.html?pg=__PGNO__#xy'>__PGNO__</a>","__PGNO__",pageCount)+'</p>';
+                return html;
+            }
+
+            var content;
+            if( getHash()=="sh" ){
+                content = getSHPage();
+                document.querySelector("#shLi").className="active";
+                document.querySelector("#xyLi").className="";
+            }else{
+                content = getXYPage();
+                document.querySelector("#xyLi").className="active";
+                document.querySelector("#shLi").className="";
+            }
+            document.querySelector("#content").innerHTML = content;
+        };
+
+    </script>
+</head>
+<body>
+
+<p class="head">招贤纳什</p>
+<div class="box">
+    <ul class="left">
+        <li class="active" id="shLi">
+          <a href="sample.html?pg=1#sh">社会招聘</a>
+        </li>
+        <li id="xyLi">
+            <a href="sample.html?#xy">校园招聘</a>
+        </li>
+    </ul>
+    <div class="right" id="content">
+    </div>
+</div>
+
+</body>
+</html>
