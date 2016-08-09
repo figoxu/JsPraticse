@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+
+        console.log(window.location);
+        console.log(window.location.href);	//真正的地址
+        console.log(window.location.search);	//找到地址栏里?到#前面的内容
+        console.log(window.location.hash);	//#加后面的内容
+
+        window.onload = function(){
+            console.log("@items:",getParams());
+            console.log("@hash:",getHash());
+        };
+
+        function getParams(){
+            var params = window.location.search;
+            params = params.replace("\?","");
+            var paramStrArray = params.split("&");
+            var params = {};
+            for(var i=0;i<paramStrArray.length;i++){
+                var str = paramStrArray[i];
+                var pairs = str.split("=");
+                if(pairs.length<2){
+                    continue;
+                }
+                params[pairs[0]]=pairs[1];
+            }
+            return params;
+        }
+
+        function getHash(){
+            var hash = window.location.hash;
+            hash = hash.replace("#","");
+            return hash;
+        }
+    </script>
+    <style type="text/css">
+        a {
+            display: block;
+            background-color: #0d3349;
+            color: #bce8f1;
+        }
+    </style>
+</head>
+<body>
+
+<a href="index.html#sk">hashSample</a>
+<a href="index.html?a=1&b=2&c=3">paramSample</a>
+<a href="index.html?a=1&b=2&c=3#sk">paramWithHash</a>
+
+
+</body>
+</html>
