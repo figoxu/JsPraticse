@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
+
+
+        .left{
+            width: 200px;
+            height: 200px;
+            background: #eee;
+            background: url(img/3.jpeg);
+            position: relative;
+            background-size:cover;
+        }
+
+        .mirror{
+            width: 50px;
+            height: 50px;
+            border: 1px solid #000;
+            background: #fff;
+            filter: alpha(opacity: 30);
+            opacity: 0.3;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display:none;
+            cursor: move;
+        }
+         .right{
+            position: absolute;
+            top:8px;
+            left: 225px;
+            width:400px;
+            height:400px;
+            overflow:hidden;
+            border:2px solid #CCC;
+            display:none;
+        }
+        .right img {
+            position:absolute;
+            top: 0px;
+            left: 0px;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            var box=document.getElementById('box');
+            var left=document.querySelector('.left');
+            var mirror=document.querySelector('.mirror');
+            var right=document.querySelector('.right');
+            var img=document.querySelector('.img');
+            //鼠标移出
+            left.onmouseout=function(){
+                mirror.style.display='none';
+                right.style.display='none';
+            };
+            //鼠标移入
+            left.onmouseover=function(){
+                mirror.style.display='block';
+                right.style.display='block';
+            };
+            //鼠标进入
+            left.onmousemove=function(ev){
+                var l=ev.clientX-this.offsetLeft-mirror.offsetWidth/2;
+                var t=ev.clientY-this.offsetTop-mirror.offsetHeight/2;
+                if(l<0){
+                    l=0;
+                }
+                if(t<0){
+                    t=0;
+                }
+                if(l>this.offsetWidth-mirror.offsetWidth){
+                    l=this.offsetWidth-mirror.offsetWidth;
+                }
+                if(t>this.offsetHeight-mirror.offsetHeight){
+                    t=this.offsetHeight-mirror.offsetHeight;
+                }
+                mirror.style.left=l+'px';
+                mirror.style.top=t+'px';
+
+                var aX=l/(left.offsetWidth-mirror.offsetWidth);
+                var bY=t/(left.offsetHeight-mirror.offsetHeight);
+
+                img.style.left=-aX*(img.offsetWidth-right.offsetWidth)+'px';
+                img.style.top=-bY*(img.offsetHeight-right.offsetHeight)+'px';
+            };
+        }
+    </script>
+</head>
+<body>
+<div class="box">
+    <div class="left">
+        <span class="mirror"></span>
+    </div>
+
+    <div class="right">
+        <img src="img/3.jpeg" class="img"/>
+    </div>
+</div>
+</body>
+</html>
