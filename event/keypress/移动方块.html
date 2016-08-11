@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript">
+        window.onload=function(){
+            var upFlag=false;
+            var leftFlag=false;
+            var rightFlag=false;
+            var downFlag=false;
+
+            var box=document.getElementById('box');
+            var step=10;
+            var time;
+            function handleMove(){
+                clearInterval(time);
+                if( !upFlag && !leftFlag && !rightFlag && !downFlag ){
+                    return;
+                }
+                time=setInterval(function(){
+                    var width = document.body.clientWidth ||  document.body.offsetWidth||document.documentElement.clientWidth||document.documentElement.offsetWidth ;
+                    var height = document.body.clientHeight ||  document.body.offsetHeight ||document.documentElement.clientHeight||document.documentElement.offsetHeight ;
+                    if(leftFlag){
+                        var x = box.offsetLeft-step;
+                        if(x<=0){
+                            x=0;
+                        }
+                        box.style.left=x+'px';
+                    }
+                    if(rightFlag){
+                        var x = box.offsetLeft+step;
+                        if(x>width-box.offsetWidth){
+                            x=width-box.offsetWidth;
+                        }
+                        box.style.left=x+'px';
+                    }
+                    if(upFlag){
+                        var y = box.offsetTop-step;
+                        if(y<=0){
+                            y=0;
+                        }
+                        box.style.top=y+'px';
+                    }
+                    if(downFlag){
+                        var y = box.offsetTop+step;
+                        if(y>height-box.offsetHeight){
+                            y=height-box.offsetHeight;
+                        }
+                        box.style.top=y+'px';
+                    }
+                },16)
+            }
+            document.onkeydown=function(ev){
+                if(ev.keyCode==37){
+                    leftFlag=true;
+                }else if(ev.keyCode==38){
+                    upFlag=true;
+                }else if(ev.keyCode==39){
+                    rightFlag=true;
+                }else if(ev.keyCode==40){
+                    downFlag=true;
+                }
+                handleMove();
+            };
+            document.onkeyup=function(ev){
+                if(ev.keyCode==37){
+                    leftFlag=false;
+                }else if(ev.keyCode==38){
+                    upFlag=false;
+                }else if(ev.keyCode==39){
+                    rightFlag=false;
+                }else if(ev.keyCode==40){
+                    downFlag=false;
+                }
+                handleMove();
+            };
+        }
+    </script>
+    <style>
+        body{padding: 0;margin: 0;}
+        div{width: 100px;height: 100px;background: #3399ff;position: absolute;top:0;left: 0;padding: 0;margin: 0;}
+    </style>
+</head>
+<body>
+<div id="box"></div>
+</body>
+</html>
