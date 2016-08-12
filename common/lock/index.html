@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="js/ReadWriteLock.js">//</script>
+    <script type="text/javascript">
+
+
+        window.onload = function(){
+            var locks = new ReadWriteLock();
+            var pause = false;
+            var sleepTime = 100;
+            var count = 0;
+            function countTheVal(){
+                if(pause){
+                    return
+                }
+                function business(){
+                    locks.writeLock(function(){
+                        var val = count;
+                        val = count+1;
+                        var v=Math.random()*2;
+                        window.setTimeout(function(){
+                            count = val;
+                            console.log(val);
+                            locks.unlock();
+                        },v);
+                    });
+                }
+                if(sleepTime<=0){
+                    pause=true;
+                    sleepTime=100;
+                    window.setTimeout(function(){
+                        pause=false;
+                    },1000*20);
+                }else{
+                    if( Math.random(10) > 2){
+                        business();
+                    }else{
+                        sleepTime--;
+                        window.setTimeout(business,sleepTime);
+                    }
+                }
+            }
+            for(var i=0;i<100;i++){
+                window.setInterval(countTheVal,0);
+            }
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>
