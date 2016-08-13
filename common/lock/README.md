@@ -5,4 +5,5 @@ JavaScript锁
  ![image](https://github.com/figoxu/JsPraticse/blob/master/common/lock/img/001.png)
  
 在有锁的情况下，可以加锁保证时序
+
  ![image](https://github.com/figoxu/JsPraticse/blob/master/common/lock/img/002.png)
