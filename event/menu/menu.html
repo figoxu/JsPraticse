@@ -41,16 +41,16 @@
             var lis=document.querySelectorAll('li');
             for(var i=0;i<lis.length;i++){
                 lis[i].onmouseover=function(){
+                    this.children[0].className="active";
                     var uls=this.querySelectorAll('ul');
                     if(uls.length>0){
-                        this.children[0].className="active";
                         uls[0].style.display="block"
                     }
                 };
                 lis[i].onmouseout=function(){
+                    this.children[0].className="";
                     var uls=this.querySelectorAll('ul');
                     if(uls.length>0){
-                        this.children[0].className="";
                         uls[0].style.display="none"
                     }
                 };
