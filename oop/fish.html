@@ -57,9 +57,9 @@
         Animal.prototype = {
             name: "animal",
             weight: 0,
-                eat: function() {
-            alert( "Animal is eating!" );
-        }
+            eat: function () {
+                alert("Animal is eating!");
+            }
         }
         // 声明 Mammal 对象构造器
         function Mammal() {
@@ -70,7 +70,7 @@
         Mammal.prototype = new Animal();
 
         // 声明 Horse 对象构造器
-        function Horse( height, weight ) {
+        function Horse(height, weight) {
             this.name = "horse";
             this.height = height;
             this.weight = weight;
@@ -79,14 +79,14 @@
         Horse.prototype = new Mammal();
 
         // 重新指定 eat 方法 , 此方法将覆盖从 Animal 原型继承过来的 eat 方法
-        Horse.prototype.eat = function() {
-            alert( "Horse is eating grass!" );
+        Horse.prototype.eat = function () {
+            alert("Horse is eating grass!");
         }
         // 验证并理解原型链
-        var horse = new Horse( 100, 300 );
-        console.log( horse.__proto__ === Horse.prototype );
-        console.log( Horse.prototype.__proto__ === Mammal.prototype );
-        console.log( Mammal.prototype.__proto__ === Animal.prototype );
+        var horse = new Horse(100, 300);
+        console.log(horse.__proto__ === Horse.prototype);
+        console.log(Horse.prototype.__proto__ === Mammal.prototype);
+        console.log(Mammal.prototype.__proto__ === Animal.prototype);
     </script>
 </head>
 <body>
