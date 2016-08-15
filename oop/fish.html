@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        function commonFish() {
+            this.swim = function () {
+                console.log(" common swim")
+            };
+            this.sing = function () {
+                console.log(" sing a song")
+            }
+        }
+        function fastFish() {
+            this.swim = function () {
+                console.log(" i am swim fast")
+            };
+            this.name = function () {
+                console.log(" i am fast fish")
+            };
+        }
+        fastFish.prototype = new commonFish()
+
+        var ff = new fastFish();
+        ff.swim();
+        ff.sing();
+        ff.name();
+        var commonFish = new fastFish();
+        commonFish.swim();
+    </script>
+    <script type="text/javascript">
+
+        // 构造器 Person 本身是一个函数对象
+        function Person() {
+            // 此处可做一些初始化工作
+        }
+        // 它有一个名叫 prototype 的属性
+        Person.prototype = {
+            name: "张三",
+            age: 26,
+            gender: "男",
+            eat: function (stuff) {
+                alert("我在吃" + stuff);
+            }
+        };
+        // 使用 new 关键字构造对象
+        var p = new Person();
+        p.eat(" banana ")
+    </script>
+</head>
+<body>
+
+</body>
+</html>
