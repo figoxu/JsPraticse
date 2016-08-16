@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        #div1{
+
+        }
+        #div2{
+            width:200px;
+            height: 200px;
+            background: deepskyblue;
+        }
+        p{
+            width:100px;
+            height: 20px;
+            background: red;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">
+    <div id="div2">
+        <div>
+            <div>
+                <div>
+                    <div>
+                        <p>111</p>
+                        <p>222</p>
+                        <p>333</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    /*
+     ev.target:事件源（触发事件的源头）
+     */
+    document.onclick = function(ev){
+        //console.dir(ev.target);
+        if(ev.target.tagName == 'P'){
+            if(ev.target.previousElementSibling){
+                console.log(ev.target.previousElementSibling.innerHTML)
+            }
+        }
+    }
+</script>
+</body>
+</html>
