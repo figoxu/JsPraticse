@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!--碰撞检测-->
+    <style>
+        #div1 {
+            width: 100px;
+            height: 100px;
+            background: darkred;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        #box {
+            width: 100px;
+            height: 100px;
+            background: blue;
+            position: absolute;
+            top: 300px;
+            left: 300px;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<div id="box"></div>
+<script type="text/javascript">
+
+    /*
+
+     正常思维：
+
+     A的右边和B的左边碰，如果A的右边大于或者等于B的左边就说明碰撞到了
+
+
+     逆向思维：
+     如果A的右边小于B的左边就说明没碰撞到
+     否则就是碰到了
+
+
+
+     */
+    var div2 = document.getElementById('box');
+    Drag('div1');
+
+    function Drag(id) {
+        var div1 = document.getElementById(id);
+        var disX = 0;
+        var disY = 0;
+        div1.addEventListener('mousedown', fnDown);
+        function fnDown(ev) {
+            disX = ev.pageX - div1.offsetLeft;
+            disY = ev.pageY - div1.offsetTop;
+
+            document.addEventListener('mousemove', fnMove);
+            document.addEventListener('mouseup', fnUp);
+
+            ev.preventDefault();
+        }
+
+        function fnMove(ev) {
+
+
+            /*
+             获取要拖拽元素的上下左右的位置
+             */
+
+            var l1 = ev.pageX - disX;
+            var t1 = ev.pageY - disY;
+            var r1 = l1 + div1.offsetWidth;
+            var b1 = t1 + div1.offsetHeight;
+
+            /*
+             获取要碰撞元素的上下左右的位置
+             */
+            var l2 = div2.offsetLeft;
+            var t2 = div2.offsetTop;
+            var r2 = l2 + div2.offsetWidth;
+            var b2 = t2 + div2.offsetHeight;
+
+
+            if (r1 < l2 || b1 < t2 || l1 > r2 || t1 > b2) {
+                div2.style.background = 'blue';
+            } else {
+                div2.style.background = 'greenyellow';
+            }
+
+
+            div1.style.left = l1 + 'px';
+            div1.style.top = t1 + 'px';
+        }
+
+        function fnUp() {
+            document.removeEventListener('mousemove', fnMove);
+            document.removeEventListener('mouseup', fnUp);
+        }
+    }
+
+</script>
+</body>
+</html>
