@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        var fn1 = fn2(1,2)
+        document.addEventListener('click',fn1);
+        document.removeEventListener('click',fn2);
+
+        function fn2(a,b){
+            return fn2 = function(){
+                alert(a+b);
+            }
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>
