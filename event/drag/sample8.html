@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1 {
+            width: 100px;
+            height: 100px;
+            background: darkred;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+<img src="../img/img33.jpg" width="100" height="100" id="div1"/>
+<script type="text/javascript">
+    var div1 = document.getElementById('div1');
+    var disX = 0;
+    var disY = 0;
+
+    div1.addEventListener('mousedown', fnDown);
+    function fnDown(ev) {
+        disX = ev.pageX - div1.offsetLeft;
+        disY = ev.pageY - div1.offsetTop;
+
+        document.addEventListener('mousemove', fnMove);
+        document.addEventListener('mouseup', fnUp);
+
+        ev.preventDefault();
+    }
+
+    function fnMove(ev) {
+        div1.style.left = ev.pageX - disX + 'px';
+        div1.style.top = ev.pageY - disY + 'px';
+    }
+
+    function fnUp() {
+        document.removeEventListener('mousemove', fnMove);
+        document.removeEventListener('mouseup', fnUp);
+    }
+
+
+</script>
+</body>
+</html>
