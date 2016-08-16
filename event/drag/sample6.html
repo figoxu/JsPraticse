@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1 {
+            width: 100px;
+            height: 100px;
+            background: darkred;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+<!--<div id="div1"></div>-->
+<img src="../img/img33.jpg" width="100" height="100" id="div1"/>
+<script type="text/javascript">
+    /*
+    限定拖拽范围
+     在写拖拽的时候，记得清下默认行为。
+     */
+    var div1 = document.getElementById('div1');
+
+    div1.addEventListener('mousedown', fnDown);
+
+
+    function fnDown(ev) {
+        var disX = ev.pageX - div1.offsetLeft;
+        var disY = ev.pageY - div1.offsetTop;
+
+        document.addEventListener('mousemove', fnMove);
+        document.addEventListener('mouseup', fnUp);
+
+        function fnMove(ev) {
+            var l = ev.pageX - disX;
+            var t = ev.pageY - disY;
+
+            //window.innerWidth
+            if (l < 0) {
+                l = 0;
+            } else if (l > document.documentElement.clientWidth - div1.offsetWidth) {
+
+                /*
+                 如果left值大于可视区的宽度 - 自身的宽度就等于可视区的宽度 - 自身的宽度
+
+                 */
+
+                l = document.documentElement.clientWidth - div1.offsetWidth;
+            }
+
+
+            if (t < 0) {
+                t = 0;
+            } else if (t > document.documentElement.clientHeight - div1.offsetHeight) {
+
+                t = document.documentElement.clientHeight - div1.offsetHeight;
+
+            }
+
+
+            div1.style.left = l + 'px';
+            div1.style.top = t + 'px';
+        }
+
+        function fnUp() {
+            document.removeEventListener('mousemove', fnMove);
+            document.removeEventListener('mouseup', fnUp);
+        }
+
+        ev.preventDefault();
+
+    }
+
+
+</script>
+</body>
+</html>
