@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1 {
+            width: 100px;
+            height: 100px;
+            background: darkred;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">
+
+</div>
+<script type="text/javascript">
+    /*
+     拖拽的3大事件：
+     onmousedown
+     onmousemove
+     onmouseup
+     */
+    var div1 = document.getElementById('div1');
+
+    var disX = 0;
+    var disY = 0;
+
+    div1.onmousedown = function (ev) {
+        disX = ev.pageX; //down记录下来的x轴
+        disY = ev.pageY;//down记录下来的y轴
+
+        div1.onmousemove = function (ev) {
+            //移动的x轴 - down记录下来的x轴 = 移动了多少x
+
+            console.log(disX, ev.pageX)
+
+            div1.style.left = ev.pageX - disX + 'px';
+            //移动的y轴 - down记录下来的y轴 = 移动了多少y
+            div1.style.top = ev.pageY - disY + 'px';
+        }
+
+        div1.onmouseup = function () {
+            div1.onmousemove = null;
+        }
+
+    }
+
+
+</script>
+</body>
+</html>

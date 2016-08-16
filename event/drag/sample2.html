@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1 {
+            width: 100px;
+            height: 100px;
+            background: darkred;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">
+
+</div>
+<script type="text/javascript">
+    /*
+     拖拽的3大事件：
+     onmousedown
+     onmousemove
+     onmouseup
+     */
+    var div1 = document.getElementById('div1');
+
+    var disX = 0;
+    var disY = 0;
+
+    div1.onmousedown = function (ev) {
+        //鼠标按下的位置 - 元素的定位左边距 = 鼠标按下的位置到元素最左边的距离
+        disX = ev.pageX - div1.offsetLeft;
+        disY = ev.pageY - div1.offsetTop;
+
+        div1.onmousemove = function (ev) {
+            //移动的坐标 - 鼠标按下的位置到元素最左边的距离 = 移动之后元素的位置。
+            div1.style.left = ev.pageX - disX + 'px';
+            div1.style.top = ev.pageY - disY + 'px';
+        }
+
+        div1.onmouseup = function () {
+            div1.onmousemove = null;
+        }
+
+    }
+
+
+</script>
+</body>
+</html>

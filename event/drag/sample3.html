@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1 {
+            width: 100px;
+            height: 100px;
+            background: darkred;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">
+
+</div>
+<script type="text/javascript">
+    /*
+     拖拽的3大事件：
+     onmousedown
+     onmousemove
+     onmouseup
+
+     第一个问题：
+     当鼠标快速移动的时候，div不动了。
+     是出在移动快了鼠标移出div（而改变div位置的代码是写在这个元素身上的）
+
+     解决：
+     改变div位置的代码是写在document上即可
+
+
+     第二个问题：
+     当元素超出div的时候（比如：把元素拉到顶部->鼠标抬起）
+     已经没有在元素上抬起了，这个时候，抬起事件中的代码不执行。
+     解决：
+     将解除move函数绑定在document.onmouseup身上
+
+
+     */
+    var div1 = document.getElementById('div1');
+
+    var disX = 0;
+    var disY = 0;
+    var n = 0;
+
+    div1.onmousedown = function (ev) {
+        //鼠标按下的位置 - 元素的定位左边距 = 鼠标按下的位置到元素最左边的距离
+        disX = ev.pageX - div1.offsetLeft;
+        disY = ev.pageY - div1.offsetTop;
+
+        document.onmousemove = function (ev) {
+            //移动的坐标 - 鼠标按下的位置到元素最左边的距离 = 移动之后元素的位置。
+            div1.style.left = ev.pageX - disX + 'px';
+            div1.style.top = ev.pageY - disY + 'px';
+        }
+
+        document.onmouseup = function () {
+            document.onmousemove = null;
+            console.log(++n)
+            document.onmouseup = null;
+            //document.onmousemove = document.onmouseup = null;
+        }
+
+    }
+
+    document.onclick = function () {
+        alert(n)
+    }
+
+
+</script>
+</body>
+</html>
