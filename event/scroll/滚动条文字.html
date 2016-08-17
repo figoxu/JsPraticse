@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .box {
+            position: relative;
+            width: 400px;
+            height: 300px;
+            margin: 50px auto;
+            border: 1px solid #000000;
+        }
+
+        .div1 {
+            position: absolute;
+            top: -1px;
+            right: -32px;
+            width: 30px;
+            height: 302px;
+            background: #c0d0e0;
+            display: none;
+        }
+
+        .content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 30px;
+            height: 50px;
+            background: #222222;
+            cursor: pointer;
+        }
+
+        .div3 {
+            position: relative;
+            width: 400px;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .div4 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 5px;
+            text-indent: 2em;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            //文字
+            var content = document.querySelector('.content');
+            var div1 = document.querySelector('.div1');
+            var div3 = document.querySelector('.div3');
+            var div4 = document.querySelector('.div4');
+            if (div3.scrollHeight > 302) {
+                div1.style.display = 'block';
+            } else if (div3.scrollHeight < 302) {
+                div1.style.display = 'none';
+            }
+            var a = 302 / div3.scrollHeight;
+            content.style.height = a * 302 + 'px';
+            //滚动条
+            var disY = 0;
+            content.addEventListener('mousedown', fnDown);
+            function fnDown(ev) {
+                disY = ev.pageY - content.offsetTop;
+                document.addEventListener('mousemove', fnMove);
+                document.addEventListener('mouseup', fnUp);
+                ev.preventDefault();
+            }
+
+            function fnMove(ev) {
+                var t = ev.pageY - disY;
+                if (t < 0) {
+                    t = 0;
+                } else if (t > div1.offsetHeight - content.offsetHeight) {
+                    t = div1.offsetHeight - content.offsetHeight;
+                }
+                content.style.top = t + 'px';
+                var scale = t / (div1.offsetHeight - content.offsetHeight);
+                div4.style.top = ( div3.offsetHeight - div4.scrollHeight ) * scale + 'px';
+            }
+
+            function fnUp() {
+                document.removeEventListener('mousemove', fnMove);
+                document.removeEventListener('mouseup', fnUp);
+            }
+
+            //滚轮事件兼容谷歌和FF
+            if (window.navigator.userAgent.toLowerCase().indexOf('firefox') != -1) {
+                window.addEventListener('DOMMouseScroll', fn1);
+            } else {
+                window.addEventListener('mousewheel', fn1);
+            }
+            function fn1(ev) {
+                var down = 0;
+
+                if (ev.wheelDelta) {
+                    down = ev.wheelDelta > 0 ? true : false;
+                } else {
+                    down = ev.detail < 0 ? true : false;
+                }
+                var n = 0;
+                var t = content.offsetTop;
+                if (down) {
+                    t -= 5;
+                } else {
+                    t += 5;
+                    n++;
+                }
+                if (t < 0) {
+                    t = 0;
+                } else if (t > div1.offsetHeight - content.offsetHeight) {
+                    t = div1.offsetHeight - content.offsetHeight;
+                }
+                var scale = t / (div1.offsetHeight - content.offsetHeight);
+                div4.style.top = ( div3.offsetHeight - div4.scrollHeight ) * scale + 'px';
+                content.style.top = t + 'px';
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="box">
+    <div class="div1">
+        <p class="content"></p>
+    </div>
+    <div class="div3">
+        <div class="div4">
+            妙味反对传统IT教育枯燥乏味的教学模式，
+            妙味提供一种全新的快乐学习方法！
+            目前主要针对的是javascript培训，
+            同时还提供了css教程、javascript视频、js特效等,
+            最新推出了外地学员们喜欢的javascript网络课程服务，
+            同时还为处于javascript入门阶段的朋友录制了大量javascript视频其中涉及了大量javascript基础知识，
+            妙味反对传统IT教育枯燥乏味的教学模式，
+            妙味提供一种全新的快乐学习方法！
+            目前主要针对的是javascript培训，
+            同时还提供了css教程、javascript视频、js特效等,
+            最新推出了外地学员们喜欢的javascript网络课程服务，
+            同时还为处于javascript入门阶段的朋友录制了大量javascript视频其中涉及了大量javascript基础知识，
+            妙味反对传统IT教育枯燥乏味的教学模式，
+            妙味提供一种全新的快乐学习方法！
+            目前主要针对的是javascript培训，
+            妙味反对传统IT教育枯燥乏味的教学模式，
+            妙味提供一种全新的快乐学习方法！
+            目前主要针对的是javascript培训，
+            同时还提供了css教程、javascript视频、js特效等,
+            最新推出了外地学员们喜欢的javascript网络课程服务，
+            同时还为处于javascript入门阶段的朋友录制了大量javascript视频其中涉及了大量javascript基础知识，
+            妙味反对传统IT教育枯燥乏味的教学模式，
+            妙味提供一种全新的快乐学习方法！
+            目前主要针对的是javascript培训，
+            同时还提供了css教程、javascript视频、js特效等,
+            最新推出了外地学员们喜欢的javascript网络课程服务，
+            同时还为处于javascript入门阶段的朋友录制了大量javascript视频其中涉及了大量javascript基础知识，
+            妙味反对传统IT教育枯燥乏味的教学模式，
+            妙味提供一种全新的快乐学习方法！
+            目前主要针对的是javascript培训，
+            同时还提供了css教程、javascript视频、js特效等,
+            最新推出了外地学员们喜欢的javascript网络课程服务，
+            同时还为处于javascript入门阶段的朋友录制了大量javascript视频其中涉及了大量javascript基础知识，
+            妙味反对传统IT教育枯燥乏味的教学模式，
+            妙味提供一种全新的快乐学习方法！
+            目前主要针对的是javascript培训，
+            妙味反对传统IT教育枯燥乏味的教学模式，
+            妙味提供一种全新的快乐学习方法！
+            目前主要针对的是javascript培训，
+            同时还提供了css教程、javascript视频、js特效等,
+            最新推出了外地学员们喜欢的javascript网络课程服务，
+            同时还为处于javascript入门阶段的朋友录制了大量javascript视频其中涉及了大量javascript基础知识，
+            妙味反对传统IT教育枯燥乏味的教学模式，
+            妙味提供一种全新的快乐学习方法！
+            目前主要针对的是javascript培训，
+            同时还提供了css教程、javascript视频、js特效等,
+            最新推出了外地学员们喜欢的javascript网络课程服务，
+            同时还为处于javascript入门阶段的朋友录制了大量javascript视频其中涉及了大量javascript基础知识，
+            妙味反对传统IT教育枯燥乏味的教学模式，
+            妙味提供一种全新的快乐学习方法！
+            目前主要针对的是javascript培训，
+            同时还提供了css教程、javascript视频、js特效等,
+            最新推出了外地学员们喜欢的javascript网络课程服务，
+            同时还为处于javascript入门阶段的朋友录制了大量javascript视频其中涉及了大量javascript基础知识，
+            妙味反对传统IT教育枯燥乏味的教学模式，
+            妙味提供一种全新的快乐学习方法！
+            目前主要针对的是javascript培训，
+            <!--同时还提供了css教程、javascript视频、js特效等,-->
+            <!--最新推出了外地学员们喜欢的javascript网络课程服务，-->
+            <!--同时还为处于javascript入门阶段的朋友录制了大量javascript视频其中涉及了大量javascript基础知识，-->
+            <!--妙味反对传统IT教育枯燥乏味的教学模式，-->
+            <!--妙味提供一种全新的快乐学习方法！-->
+            <!--目前主要针对的是javascript培训，-->
+            <!--同时还提供了css教程、javascript视频、js特效等,-->
+            <!--最新推出了外地学员们喜欢的javascript网络课程服务，-->
+            <!--同时还为处于javascript入门阶段的朋友录制了大量javascript视频其中涉及了大量javascript基础知识，-->
+            <!--同时还提供了css教程、javascript视频、js特效等,-->
+            <!--最新推出了外地学员们喜欢的javascript网络课程服务，-->
+            <!--同时还为处于javascript入门阶段的朋友录制了大量javascript视频其中涉及了大量javascript基础知识，-->
+            <!--妙味反对传统IT教育枯燥乏味的教学模式，-->
+            妙味提供一种全新的快乐学习方法！
+            目前主要针对的是javascript培训，
+            同时还提供了css教程、javascript视频、js特效等,
+            最新推出了外地学员们喜欢的javascript网络课程服务，
+            同时还为处于javascript入门阶段的朋友录制了大量javascript视频其中涉及了大量javascript基础知识，
+
+
+        </div>
+
+    </div>
+
+</div>
+</body>
+</html>
