@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            position: relative;
+        }
+
+        input {
+            margin: 30px;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        p {
+            position: absolute;
+            top: 40px;
+            left: 400px;
+            width: 50px;
+            height: 50px;
+            background: #3399ff;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var box = document.getElementById('box');
+            var btn = document.getElementById('btn');
+            var arrX = [];
+            var arrY = [];
+            var timer;
+            //点击回放
+            btn.addEventListener('click', fn4);
+            function fn4() {
+                var a = arrX.length - 1;
+                var b = arrY.length - 1;
+                timer = setInterval(function () {
+                    a--;
+                    b--;
+                    if (a == 0 && b == 0) {
+                        clearInterval(timer);
+                        arrX = [];
+                        arrY = [];
+                    }
+
+                    box.style.left = arrX[a] + 'px';
+                    box.style.top = arrY[b] + 'px';
+                }, 20);
+
+            }
+
+            //小方块点击
+            box.addEventListener('mousedown', fn1);
+            function fn1(ev) {
+                var boxY = ev.pageY - box.offsetTop;
+                var boxX = ev.pageX - box.offsetLeft;
+                document.addEventListener('mousemove', fn2);
+                function fn2(ev) {
+                    var t = ev.pageY - boxY;
+                    var l = ev.pageX - boxX;
+                    arrX.push(l);
+                    arrY.push(t);
+                    //判断上下
+                    if (t < 0) {
+                        t = 0;
+                    } else if (t > document.documentElement.clientHeight - box.offsetHeight) {
+                        t = document.documentElement.clientHeight - box.offsetHeight;
+                    }
+                    //判断左右
+                    if (l < 0) {
+                        l = 0;
+                    } else if (l > document.documentElement.clientWidth - box.offsetWidth) {
+                        l = document.documentElement.clientWidth - box.offsetWidth;
+                    }
+                    box.style.left = l + 'px';
+                    box.style.top = t + 'px';
+                }
+
+                document.addEventListener('mouseup', fn3);
+                function fn3() {
+                    document.removeEventListener('mouseup', fn3);
+                    document.removeEventListener('mousemove', fn2);
+                }
+
+                ev.preventDefault();
+            }
+        }
+    </script>
+</head>
+<body>
+<input type="button" value="运动回放" id="btn"/>
+<p id="box"></p>
+</body>
+</html>
