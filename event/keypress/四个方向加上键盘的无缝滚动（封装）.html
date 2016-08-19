@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			#content{
+				width: 400px;
+				height: 300px;
+				border: 1px solid #000;
+				margin: 100px auto;
+				position: relative;
+				overflow: hidden;
+				
+			}
+			#inner{
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			#inner img{
+				width: 400px;
+				height: 300px;
+				position: absolute;
+			}
+			#inner .img2{
+				z-index:  -1;
+			}
+		</style>
+	</head>
+<body>
+<div id="content">
+	<div id="inner">
+		<img src="img/0.jpg"/>
+		<img class="img2" src="img/1.jpg"/>
+	</div>
+</div>
+<script type="text/javascript">
+	var arr = ["img/0.jpg","img/1.jpg","img/2.jpg","img/3.jpg"];
+	
+	var inner = document.getElementById('inner');
+	var imgs = inner.children;
+	var num = 0;
+	inner.onOff  = true;
+	
+	document.addEventListener('keydown',fnDown);
+	
+	function fnDown(ev){
+		
+		switch(ev.keyCode){
+			case 37:
+				
+				fnSwtch(inner,'left',-400);
+				
+				//console.log(num)
+			break;
+			case 38:
+				//console.log('上')
+				
+				fnSwtch(inner,'top',-300);
+					
+			break;
+			case 39:
+//				console.log('右');
+
+				fnSwtch(inner,'left',400);
+				
+			break;
+			case 40:
+				
+				fnSwtch(inner,'top',300);
+			break;
+		}
+		
+		if(ev.keyCode >= 37 && ev.keyCode <= 40){
+			ev.preventDefault();
+		}
+		
+	}
+	
+	function fnSwtch(obj,attr,target){
+		if(obj.onOff){
+			imgs[1].style.left = 0;
+			imgs[1].style.top = 0;
+			
+			num = target>0?++num:--num;
+			num%=arr.length;
+			if(num < 0)num=arr.length-1;
+			
+			imgs[1].src = arr[num];
+			imgs[1].style[attr] = -target+'px';
+			
+			move(obj,attr,target,function(){
+				imgs[0].src = arr[num];
+				obj.style[attr] = 0;
+			});
+		}
+	}
+	
+	
+	function move(obj,attr,target,callBack){
+		
+		if(!inner.onOff)return;
+		inner.onOff = false;
+		obj.style.transition = '.5s';
+		
+		obj.style[attr] = target + 'px';
+		
+		setTimeout(function(){
+			obj.style.transition = '';
+			inner.onOff = true;
+			callBack && callBack();
+		},510);
+	}
+	
+	
+	
+	
+	
+	
+	
+</script>
+</body>
+</html>
+
+
+7
