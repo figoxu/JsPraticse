@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        input{
+            margin: 10px 3px;
+            width: 120px;
+            height: 20px;
+            border: 1px solid #ccc;
+        }
+        #btn{
+            width: 80px;
+            padding: 0 3px;
+            cursor:pointer;
+        }
+        .active{
+            width: 120px;
+            height: 20px;
+            border: 1px solid #E71063;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            var regExp = {
+               "v_qq":/^[^0\D][0-9]{5,10}$/,
+                "v_email":/^[0-9a-zA-Z]+[@][0-9a-zA-Z]+\.(info|biz|com|edu|gov|net|am|bz|cn|cx|hk|jp|tw|vc|vn)$/,
+                "v_phone":/^[^0\D][0-9]{10}$/,
+                "v_birth":/^(19|20)\d{2}-(1[0-2]|0?[1-9])-(0?[1-9]|[1-2][0-9]|3[0-1])$/
+            };
+            var btn=document.getElementById('btn');
+            btn.onclick=function(){
+                var elements = document.querySelectorAll("input");
+                var passFlag=true;
+                for(var i=0;i<elements.length;i++){
+                    var element = elements[i];
+                    var cName = element.className;
+                    var baseClassName = cName.replace("active","");
+                    element.className = baseClassName;
+                    for(var exp in regExp){
+                        if( cName.indexOf(exp)!=-1 ){
+                            if(!regExp[exp].test(element.value.trim())){
+                                element.className = baseClassName+" active";
+                            }
+                        }
+                    }
+                    if(element.className.indexOf("active")!=-1){
+                        passFlag=false;
+                    }
+                }
+                if(passFlag){
+                    alert("验证通过，提交成功");
+                }
+            };
+
+            var elements = document.querySelectorAll("input");
+            for(var k in elements){
+                elements[k].onfocus = function(){
+                    var cName = this.className;
+                    var baseClassName = cName.replace("active","");
+                    this.className = baseClassName;
+                }
+            }
+
+        }
+    </script>
+</head>
+<body>
+&nbsp;&nbsp;QQ:<input type="text" class="v_qq"/>
+邮箱:<input type="text" class="v_email"/>
+手机号码:<input type="text" class="v_phone"/>
+生日:<input type="text" class="v_birth"/>
+<input type="button" value="提交" id="btn"/>
+</body>
+</html>
