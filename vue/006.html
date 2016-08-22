@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="node_modules/vue/dist/vue.js">//</script>
+    <script type="text/javascript">
+        window.onload=function(){
+            Vue.filter('reverse', function (value) {
+                return value.split('').reverse().join('')
+            })
+            new Vue({
+                el: '#app',
+                data: {
+                    message:'www.figoxu.me'
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<div id="app">
+    <p>{{message}}</p>
+    <p>{{message | uppercase}}</p>
+    <p>{{message | reverse | uppercase}}</p>
+</div>
+</body>
+</html>
