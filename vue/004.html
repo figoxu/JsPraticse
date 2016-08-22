@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="node_modules/vue/dist/vue.js">//</script>
+    <script type="text/javascript">
+        window.onload = function(){
+            new Vue({
+                el: '#sample',
+                data: {
+                    parentMessage: 'FigoXu',
+                    items: [
+                        { message: 'https://github.com/figoxu' },
+                        { message: '心诚所致' },
+                        { message: '金石为开' }
+                    ]
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<ul id="sample">
+    <li v-for="item in items">
+        {{ parentMessage }} - {{ $index }} - {{ item.message }}
+    </li>
+</ul>
+</body>
+</html>
