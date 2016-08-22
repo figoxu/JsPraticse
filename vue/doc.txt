@@ -1,3 +1,8 @@
 http://vuejs.github.io/vue-validator/zh-cn/events.html
 
 https://github.com/yuche/vue-strap
+
+www.runoob.com/w3cnote/vue-js-quickstart.html
+
+http://cn.vuejs.org/examples/
+
