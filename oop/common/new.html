@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript">
+        function fn1(){
+        }
+        fn1.say = function(){
+            alert("i am static method of fn1");
+        }
+        fn1.prototype.say = function(){
+            alert("i am object method of fn1");
+        }
+        Function.prototype.say = function(){
+            alert("I am common Function");
+        }
+        Object.prototype.say = function(){
+            alert("i am common Object");
+        }
+        var f1 = new fn1;
+
+        fn1.say()
+        f1.say()
+
+        var obj = new Object()
+        obj.say();
+
+       function sample(){}
+        sample.say();
+    </script>
+</head>
+<body>
+
+</body>
+</html>
