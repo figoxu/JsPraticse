@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript">
+
+        function teacher(name,age,sex,say){//工厂函数（构造函数）
+            var obj = new Object();//原材料
+            //加工
+            obj.name = name;
+            obj.age = age;
+            obj.sex = sex;
+            obj.say = function(){
+                alert(say);
+            }
+            return obj; //出厂
+        }
+        //t1就是teacher这个类的实例化对象。
+        var t1 = teacher('Figo',32,'Man','Hello World');//实例化过程
+        t1.say();
+        alert(t1.name)
+    </script>
+</head>
+<body>
+
+</body>
+</html>

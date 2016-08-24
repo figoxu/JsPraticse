@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript">
+
+        /**
+         * 原型：prototype
+         * 只要一个函数声明，自带就有一些方法或者属性
+         * 其中在函数内有个属性叫prototype 它的值为*obj类型*的
+         * 对象下面只有原型链没有原型
+         * 而函数既有原型链又有原型。
+         * 给某个元素加了一条行间样式
+         *
+         * 原型链：相当于给好几个元素加了个class
+         * 一般来说，方法是挂构造函数的原型下面，这样就能做到方法与方法之间是相当的，从而节省资源。
+         *
+         * 原型链：__proto__
+         * 对象与构造函数之间桥梁。
+         **/
+        function Teacher(name,age,sex){
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+        }
+        Teacher.prototype.say = function(say){
+            alert(say);
+        }
+        var t1 = new Teacher('Figo.xu',32,'Man');
+        t1.say("Hello World");
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

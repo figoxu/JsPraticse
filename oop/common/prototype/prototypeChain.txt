@@ -1,0 +1,6 @@
+
+        /**
+         * 函数的原型，只供给它的实例化对象使用。
+         * obj.say  -> obj.__proto__ ->  Object.prototype\
+         * f1.say ->  f1.__proto__- >  fn1.prototype -> fn1.prototype.__proto__   -> Object.prototype  ->  Object.prototype.say
+         */
