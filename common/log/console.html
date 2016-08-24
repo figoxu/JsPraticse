@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>常用console命令</title>
+    <script type="text/javascript">
+        window.onload = function () {
+//            日志分类打印
+            console.log('hello');
+            console.info('信息');
+            console.error('错误');
+            console.warn('警告');
+
+//            日志格式化打印
+            console.log("%d年%d月%d日", 2011, 8, 24);
+
+//            日志分组打印
+            console.group("第一组");
+            console.log("大家好，我是建辉");
+            console.log("大家都叫我Figo")
+            console.groupEnd("第一组");
+
+
+            console.group("第二组");
+            console.log("我的能量超出你想象");
+            console.log("一起来github上，编程马拉松吧")
+            console.groupEnd("第二组");
+
+//            打印对象
+            var info = {
+                blog: "http://github.com/figoxu",
+                message: "give me an star on github"
+            };
+            console.dir(info);
+
+//            用xml的方式打印Element
+            console.dirxml(document.getElementById("info"))
+
+
+//            断言检查
+            var result = 1;
+            console.assert(result);
+            var year = 2014;
+            console.assert(year == 2018);
+
+
+//            函数是如何被调用的，在其中加入console.trace()方法就可以了
+            function add(a, b) {
+                console.trace();
+                return a + b;
+            }
+
+            var x = add3(1, 1);
+
+            function add3(a, b) {
+                return add2(a, b);
+            }
+
+            function add2(a, b) {
+                return add1(a, b);
+            }
+
+            function add1(a, b) {
+                return add(a, b);
+            }
+
+//            console.time()和console.timeEnd()，用来显示代码的运行时间。
+            console.time("控制台计时器一");
+            for (var i = 0; i < 1000; i++) {
+                for (var j = 0; j < 1000; j++) {
+                }
+            }
+            console.timeEnd("控制台计时器一");
+
+//            性能分析（Profiler）就是分析程序各个部分的运行时间，找出瓶颈所在，使用的方法是console.profile()。
+            function All() {
+                alert(11);
+                for (var i = 0; i < 10; i++) {
+                    funcA(1000);
+                }
+                funcB(10000);
+            }
+
+            function funcA(count) {
+                for (var i = 0; i < count; i++) {
+                }
+            }
+
+            function funcB(count) {
+                for (var i = 0; i < count; i++) {
+                }
+            }
+
+            console.profile('性能分析器');
+            All();
+            console.profileEnd();
+        }
+    </script>
+</head>
+<body>
+<div id="info">
+    <h3>我的github：http://github.com/figoxu</h3>
+
+    <p>我的能量超出你想象</p>
+</div>
+</body>
+</html>
