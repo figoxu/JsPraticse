@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="../../node_modules/vue/dist/vue.js">//</script>
+    <script type="text/javascript">
+        window.onload = function(){
+            Vue.component('child', {
+                // 声明 props
+                props: ['msg'],
+                // prop 可以用在模板内
+                // 可以用 `this.msg` 设置
+                template: '<span>{{ msg }}</span>'
+            });
+            // 创建根实例
+            new Vue({
+                el: '#example'
+            })
+        }
+    </script>
+</head>
+<body>
+
+<div id="example">
+    <child msg="Hello Figo!"></child>
+</div>
+</body>
+</html>
