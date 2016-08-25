@@ -31,5 +31,23 @@
 </head>
 <body>
 
+<ul id="ul">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+</ul>
+<script type="text/javascript">
+//    parse elements as array
+    var liElements = document.getElementsByTagName('li');
+    var arr = Array.prototype.slice.call(liElements);
+    console.log(arr)
+    arr.forEach(function(elem,index,all){
+        elem.onclick = function(){
+            all[index].style.background='pink';
+        }
+    },document)
+</script>
 </body>
 </html>
