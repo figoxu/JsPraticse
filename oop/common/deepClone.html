@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        /**
+         * 深度克隆 :
+         * 只要复合类型数据中的值为复合类型就一直循环，一直到不是
+         * 复合类型为止。
+         **/
+         function extend(obj){
+            var toStr = Object.prototype.toString;
+//            当数据为数组的时候就为[]，否则走{}
+            var o = toStr.call(obj) === '[object Array]' ? [] : {};
+            for (var attr in obj) {
+//                 如果属性值为数组或者为对象就再次循环 extend，一直for in
+                if (toStr.call(obj[attr]) === '[object Array]' || toStr.call(obj[attr]) === '[object Object]') {
+                    o[attr] = extend(obj[attr]);
+                } else {
+                    o[attr] = obj[attr];
+                }
+            }
+            return o;
+        }
+        var arr = [1, 2, 3, 4, 5, [0, 1], {name: '小花胖', obj2: {age: 90}}];
+        var arr2 = extend(arr);
+        console.log(arr)
+        console.log(arr2)
+    </script>
+</head>
+<body>
+
+</body>
+</html>
