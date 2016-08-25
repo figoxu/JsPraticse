@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <title>Title</title>
+            <style>
+                .box {
+                    width: 100px;
+                    height: 100px;
+                    background: darkred;
+                    position: absolute;
+                    top: 150px;
+                    left: 100px;
+                    z-index: 1;
+                }
+
+                .imgBg {
+                    width: 100px;
+                    height: 100px;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    opacity: .5;
+                    z-index: 2;
+                }
+            </style>
+
+            <script type="text/javascript">
+                function DDBox(element) {
+                    this.dom = element;
+                    this.disX = 0;
+                    this.disY = 0;
+                    this.L = 0;
+                    this.T = 0;
+                    var me = this;
+                    this.dom.onmousedown = function(ev){
+                        me.fnDown(ev);
+                        return false;
+                    }
+                }
+                DDBox.prototype.fnDown = function (ev) {
+                    var ev = ev || window.event;
+                    this.disX = ev.pageX - this.dom.offsetLeft;
+                    this.disY = ev.pageY - this.dom.offsetTop;
+                    var me = this;
+                    document.onmouseup = function(event){
+                        var event = event || window.event;
+                        me.fnUp(event);
+                    }
+                    document.onmousemove = function(event){
+                        var event = event || window.event;
+                        me.fnMove(event);
+                    }
+                    ev.preventDefault();
+                };
+                DDBox.prototype.fnMove = function (ev) {
+                    var ev = ev || window.event;
+                    this.L = ev.pageX - this.disX;
+                    this.T = ev.pageY - this.disY;
+                    this.dom.style.left = this.L + 'px';
+                    this.dom.style.top = this.T + 'px';
+                };
+                DDBox.prototype.fnUp = function (ev) {
+                    document.onmouseup = null;
+                    document.onmousemove = null;
+                };
+                var ddBoxies = [];
+                window.onload = function () {
+                    var nodeList = document.querySelectorAll(".box");
+                    for (var i = 0; i < nodeList.length; i++) {
+                        ddBoxies.push(new DDBox(nodeList[i]))
+                    }
+                }
+            </script>
+        </head>
+<body>
+
+<div class="box ">
+    <img src="../drag/img/img33.jpg" class="imgBg"/>
+</div>
+<div class="box " style="top:300px;background-color: #00b3ee;">
+    <img src="../drag/img/img33.jpg" class="imgBg"/>
+</div>
+<div class="box " style="top:450px;background-color: #1E66A5;">
+    <img src="../drag/img/img33.jpg" class="imgBg"/>
+</div>
+<div class="box " style="top:600px;background-color: #27c24c;">
+    <img src="../drag/img/img33.jpg" class="imgBg"/>
+</div>
+
+</body>
+</html></title>
+</head>
+<body>
+
+</body>
+</html>

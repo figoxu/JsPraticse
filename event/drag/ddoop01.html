@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background: darkred;
+            position: absolute;
+            top: 150px;
+            left: 100px;
+            z-index: 1;
+        }
+
+        .imgBg {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: .5;
+            z-index: 2;
+        }
+    </style>
+
+    <script type="text/javascript">
+        function DDBox(element) {
+            var me = this;
+            this.dom = element;
+            this.disX = 0;
+            this.disY = 0;
+            this.L = 0;
+            this.T = 0;
+            this.fnDown = function (ev) {
+                var ev = ev || window.event;
+                me.disX = ev.pageX - me.dom.offsetLeft;
+                me.disY = ev.pageY - me.dom.offsetTop;
+                document.onmouseup = me.fnUp;
+                document.onmousemove = me.fnMove;
+                ev.preventDefault();
+            };
+            this.fnMove = function (ev) {
+                var ev = ev || window.event;
+                me.L = ev.pageX - me.disX;
+                me.T = ev.pageY - me.disY;
+                me.dom.style.left = me.L + 'px';
+                me.dom.style.top = me.T + 'px';
+            };
+            this.fnUp = function (ev) {
+                document.onmouseup = null;
+                document.onmousemove = null;
+            };
+            me.dom.addEventListener('mousedown', me.fnDown);
+        }
+        var ddBoxies = [];
+        window.onload = function () {
+            var nodeList = document.querySelectorAll(".box");
+            for (var i = 0; i < nodeList.length; i++) {
+                ddBoxies.push(new DDBox(nodeList[i]))
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="box ">
+    <img src="../drag/img/img33.jpg" class="imgBg"/>
+</div>
+<div class="box " style="top:300px;background-color: #00b3ee;">
+    <img src="../drag/img/img33.jpg" class="imgBg"/>
+</div>
+<div class="box " style="top:450px;background-color: #1E66A5;">
+    <img src="../drag/img/img33.jpg" class="imgBg"/>
+</div>
+<div class="box " style="top:600px;background-color: #27c24c;">
+    <img src="../drag/img/img33.jpg" class="imgBg"/>
+</div>
+
+</body>
+</html>
