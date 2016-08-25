@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript">
+        var arr=[1,2,3,4,5]
+        Array.prototype.forEachL= function(fn,that){
+            for(var i=0;i<this.length;i++){
+                fn.call(that||null,this[i],i,this);
+            }
+        }
+        console.log("pass document as that")
+        arr.forEachL(function(val,index,all){
+            console.log("=====>")
+            console.log("@index:",index)
+            console.log("@this:",this)
+            console.log("@val:",val)
+            console.log("@all:",all)
+            console.log("<=====")
+        },document);
+        console.log("pass window as that")
+        arr.forEachL(function(val,index,all){
+            console.log("=====>")
+            console.log("@index:",index)
+            console.log("@this:",this)
+            console.log("@val:",val)
+            console.log("@all:",all)
+            console.log("<=====")
+        },window);
+    </script>
+</head>
+<body>
+
+</body>
+</html>
