@@ -8,6 +8,7 @@
         requirejs.config({
             baseUrl:'dist/js',
             paths:{
+                pace:'pace.min',
                 hi:'hi'
             },
             shim:{
@@ -20,7 +21,7 @@
             }
         });
 
-        requirejs(['hi'],function(hi){
+        requirejs(['pace','hi'],function(pace,hi){
             hi.hello();
             hi.hi();
         });
