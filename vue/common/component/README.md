@@ -7,3 +7,5 @@
 组件之间基于事件通信
 #cmp4.html
 使用template标签定义复杂对象
+#cmp5.html
+vue组件范例： 简易评论系统
