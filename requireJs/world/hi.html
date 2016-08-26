@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="../js/require.js">//</script>
+    <script type="text/javascript">
+        requirejs.config({
+            baseUrl:'dist/js',
+            paths:{
+                hi:'hi'
+            },
+            shim:{
+                hi:{init:function(){
+                    return {
+                        hello:hello,
+                        hi:hi
+                    }
+                }}
+            }
+        });
+
+        requirejs(['hi'],function(hi){
+            hi.hello();
+            hi.hi();
+        });
+    </script>
+</head>
+<body>
+
+</body>
+</html>
