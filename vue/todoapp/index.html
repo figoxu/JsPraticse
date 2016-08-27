@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <h1> {{ message }}</h1>
+    <input type="text" v-model="message"/>
+    <p>
+        <a :href="someLink">Link to google</a>
+        <a :href.literal="http://www.baidu.com">Link to baidu</a>
+    </p>
+
+    <h2>Todos</h2>
+    <ul v-if="showTodos">
+        <li v-for="todo in todos">
+             <span>{{ todo.title }}</span> <button type="button" @click="removeTodo($index)">X</button>
+        </li>
+    </ul>
+    <p v-else>
+        No Todoes Today
+    </p>
+    <p>
+        Showing Todos or not {{ showTodos }}
+        <input type="checkbox"  v-model="showTodos">
+    </p>
+    <p>
+        <input type="text" v-model="todoText" @keyup.esc="clearTodo" @keyup.enter="createTodo">
+    </p>
+    <p>
+        Count = {{ count }}
+        <button type="button" @click="increaseCount">Increase count</button>
+    </p>
+</div>
+<script type="text/javascript" src="../node_modules/vue/dist/vue.js">//</script>
+<script type="text/javascript" src="js/main.js">//</script>
+</body>
+</html>
