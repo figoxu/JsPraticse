@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="https://rawgit.com/flatiron/director/master/build/director.min.js" type="text/javascript">//</script>
+    <script type="text/javascript">
+        var author = function () { console.log("author"); };
+        var books = function () { console.log("books"); };
+        var viewBook = function (bookId) {
+            console.log("viewBook: bookId is populated: " + bookId);
+        };
+        var routes = {
+            '/author': author,
+            '/books': [books, function() {
+                console.log("An inline route handler.");
+            }],
+            '/books/view/:bookId': viewBook
+        };
+        var router = Router(routes);
+        router.init();
+    </script>
+</head>
+<body>
+<ul>
+    <li><a href="#/author">#/author</a></li>
+    <li><a href="#/books">#/books</a></li>
+    <li><a href="#/books/view/1">#/books/view/1</a></li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="../js/require.js">//</script>
+    <script type="text/javascript">
+        requirejs.config({
+            map: {
+                '*': {
+                    css: '../js/require-css/css.js'
+                }
+            }
+        });
+       require(['css!index','css!styleSheet/css2'])
+    </script>
+</head>
+<body>
+<h1>Hello</h1>
+</body>
+</html>

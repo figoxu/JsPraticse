@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="require.js">//</script>
+    <script type="text/javascript">
+        requirejs.config({
+            map: {
+                '*': {
+                    link: 'requreCss.js'
+                }
+            },
+            paths:{
+                director:"director.min"
+            },
+            shim:{
+                pageA:{init:function(){
+                    return {
+                        hello:hello
+                    }
+                }},
+                pageB:{init:function(){
+                    return {
+                        hello:hello
+                    }
+                }}
+            }
+        });
+
+        requirejs(['director'],function(director){
+            var routes = {
+                '/pageA': function () {
+                    console.log("A")
+
+//                    require(['css!index','css!styleSheet/css2'])
+                    require(["link!pageA","pageA"],function(css,pageA){
+                        pageA.hello();
+                    })
+                },
+                '/pageB': function () {
+                    console.log("B")
+                    require(["link!pageB","pageB"],function(css,pageB){
+                        pageB.hello();
+                    })
+                }
+            };
+            var router = Router(routes);
+            router.init();
+        })
+
+    </script>
+</head>
+<body>
+
+<li><a href="#/pageA">#/pageA</a></li>
+<li><a href="#/pageB">#/pageB</a></li>
+</body>
+</html>
