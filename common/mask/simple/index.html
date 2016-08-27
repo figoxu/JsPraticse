@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="mask.js">//</script>
+    <script type="text/javascript">
+    window.onload=function(){
+        var Btn=document.getElementById("maskbtn");
+        Btn.onclick=function(){
+            maskDiv("#dddddd",70,1);
+            return false;
+        }
+    }
+    window.onresize=function(){//窗口大小改变时重新载入遮罩层
+        if(document.getElementById("mask")){
+            removeMask();
+            maskDiv("#dddddd",70,1);}
+
+
+
+    }
+</script>
+</head>
+<body>
+<input type="button" id="maskbtn"  value="点击出现遮罩层" />
+</body>
+</html>
