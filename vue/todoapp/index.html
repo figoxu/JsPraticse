@@ -16,7 +16,8 @@
     <h2>Todos</h2>
     <ul v-if="showTodos">
         <li v-for="todo in todos">
-             <span>{{ todo.title }}</span> <button type="button" @click="removeTodo($index)">X</button>
+            <todo-component v-bind:todo="todo"></todo-component>
+            <button type="button" @click="removeTodo($index)">X</button>
         </li>
     </ul>
     <p v-else>
