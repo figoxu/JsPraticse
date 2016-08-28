@@ -6,4 +6,8 @@ tsc --out bundle.js app.ts
 tsc --watch --out bundle.js app.ts
 tsc --help
 
+tsc --init
+tsc
+
+
 
