@@ -15,3 +15,18 @@ http://www.cnblogs.com/sorex/archive/2011/06/30/2093499.html
         <table id="MyTable" border="1" cellspacing="0" cellpadding="0"></table>
     </div>
 </div>
+
+&lt;div id=&quot;MyTable_tableLayout&quot;&gt;
+    &lt;div id=&quot;MyTable_tableFix&quot;&gt;
+        &lt;table id=&quot;MyTable_tableFixClone&quot; border=&quot;1&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot;&gt;&lt;/table&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;MyTable_tableHead&quot;&gt;
+        &lt;table id=&quot;MyTable_tableHeadClone&quot; border=&quot;1&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot;&gt;&lt;/table&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;MyTable_tableColumn&quot;&gt;
+        &lt;table id=&quot;MyTable_tableColumnClone&quot; border=&quot;1&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot;&gt;&lt;/table&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;MyTable_tableData&quot;&gt;
+        &lt;table id=&quot;MyTable&quot; border=&quot;1&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot;&gt;&lt;/table&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
