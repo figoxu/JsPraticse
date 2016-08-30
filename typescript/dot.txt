@@ -1,0 +1,1 @@
+http://www.runoob.com/manual/gitbook/TypeScript/_book/doc/release-notes/TypeScript%201.1.html
