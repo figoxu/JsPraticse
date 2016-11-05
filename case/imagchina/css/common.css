@@ -1,0 +1,19 @@
+html{
+  height: 100%;
+}
+body{
+	background: #fff;
+  height: 100%;
+}
+.hide{
+  overflow: hidden;
+}
+.float-left{
+	float: left;
+}
+.float-right{
+	float: right;
+}
+.overflow-hidden{
+	overflow: hidden;
+}

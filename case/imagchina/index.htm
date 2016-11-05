@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=1000,initial-scale=0.5"/>
+    <meta name="keywords" content="imag,interactive,互动,行销,互动行销,亿迈,亿迈广告,亿迈互动"/>
+    <meta name="description" content="imag,interactive,互动,行销,互动行销,亿迈,亿迈广告,亿迈互动"/>
+    <meta name="viewport" content="width=device-width"/>
+    <title>iMAG INTERACTIVE 亿迈互动</title>
+    <link rel="shortcut icon" href="images/logo.ico"/>
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
+
+
+    <link rel="stylesheet" type="text/css" href="css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="css/animate-custom.css"/>
+    <link rel="stylesheet" type="text/css" href="css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="css/menu.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="js/modernizr.custom.31638.js"></script>
+    <script type="text/javascript" src="js/underscore-min.js"></script>
+    <script type="text/javascript" src="js/json2.js"></script>
+    <script type="text/javascript" src="js/backbone-min.js"></script>
+    <script type="text/javascript" src="js/dslide.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+
+    <!--<script type="text/javascript">
+    if (/(iPhone|android|iPod)/i.test(navigator.userAgent)) {
+    	window.location.href = "/wap";
+    }
+    </script>-->
+</head>
+
+<body>
+<div id="menu" class="menu">
+    <ul class="menu-list">
+        <li class="menu-item active" style="margin-left: 51px;">
+            <a href="#" data-act="0"><img src="img/menu/menu-home.png"></a>
+        </li>
+        <li class="menu-item">
+            <a href="#" data-act="1"><img src="img/menu/menu-about.png"></a>
+        </li>
+        <li class="menu-item">
+            <a href="#" data-act="2"><img src="img/menu/menu-works.png"></a>
+        </li>
+        <li class="menu-item">
+            <a href="#" data-act="3"><img src="img/menu/menu-clients.png"></a>
+        </li>
+        <li class="menu-item">
+            <a href="#" data-act="4"><img src="img/menu/menu-contact.png"></a>
+        </li>
+    </ul>
+    <div class="trigger" style="left: -45px;">
+        <img src="img/menu/menu-trigger.png">
+    </div>
+</div>
+<div id="acts-wrap">
+    <div class="acts-list">
+
+    </div>
+</div>
+
+<script id="act00-template" type="text/template">
+    <div class="inner">
+        <div class="sub"><img src="img/imag_loading2.gif" alt=""></div>
+        <div class="sub"><img src="img/act0/act00-loading-bg.png" alt=""></div>
+    </div>
+</script>
+
+<script id="act0-template" type="text/template">
+    <div id="act0" class="act act0">
+        <div class="top-part"></div>
+        <div class="center-part">
+            <img src="img/act0/act0-bg-center.png">
+        </div>
+        <div class="bottom-part"></div>
+        <div class="hand1"></div>
+        <div class="hand2"></div>
+        <div class="hand3"></div>
+        <div class="logo-part">
+            <img src="img/act0/act0-bg-logo.png">
+        </div>
+        <div class="title-part">
+            <img src="img/act0/act0-bg-title.png">
+        </div>
+    </div>
+</script>
+
+<script id="act1-template" type="text/template">
+    <div id="act1" class="act act1">
+        <div class="main-title">
+            <img src="img/act1/act1-bg-title.png">
+        </div>
+        <div class="hand1">
+            <img src="img/act1/act1-bg-hand1k.png" onload="$(this).parent().width($(this).width());">
+
+            <div class="pk">
+                <img src="img/act1/act1-bg-hand1p.png">
+            </div>
+        </div>
+        <div class="hand2">
+            <img src="img/act1/act1-bg-hand2k.png">
+
+            <div class="pk">
+                <img src="img/act1/act1-bg-hand2p.png"/>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script id="act2-template" type="text/template">
+    <div id="act2" class="act act2">
+        <div class="title">
+            <img src="img/act2/act2-bg-title.png" alt="" onload="$(this).parent().width($(this).width());">
+        </div>
+        <div class="platform">
+            <div class="client client0">
+                <img src="img/act2/act2-clinets-1.png" alt="" data-hover-img="img/act2/act2-clinets-1-hover.png">
+            </div>
+            <div class="client client1">
+                <img src="img/act2/act2-clinets-2.png" alt="" data-hover-img="img/act2/act2-clinets-2-hover.png">
+            </div>
+            <div class="client client2">
+                <img src="img/act2/act2-clinets-3.png" alt="" data-hover-img="img/act2/act2-clinets-3-hover.png">
+            </div>
+            <div class="client client3">
+                <img src="img/act2/act2-clinets-4.png" alt="" data-hover-img="img/act2/act2-clinets-4-hover.png">
+            </div>
+            <div class="client client4">
+                <img src="img/act2/act2-clinets-5.png" alt="" data-hover-img="img/act2/act2-clinets-5-hover.png">
+            </div>
+            <div class="client client5">
+                <img src="img/act2/act2-clinets-6.png" alt="" data-hover-img="img/act2/act2-clinets-6-hover.png">
+            </div>
+            <div class="client client6">
+                <img src="img/act2/act2-clinets-7.png" alt="" data-hover-img="img/act2/act2-clinets-7-hover.png">
+            </div>
+            <div class="client client7">
+                <img src="img/act2/act2-clinets-8.png" alt="" data-hover-img="img/act2/act2-clinets-8-hover.png">
+            </div>
+            <div class="client client8">
+                <img src="img/act2/act2-clinets-9.png" alt="" data-hover-img="img/act2/act2-clinets-9-hover.png">
+            </div>
+            <img class="main-bg" src="img/act2/act2-bg-main.png" alt="" onload="$(this).parent().width($(this).width());">
+        </div>
+    </div>
+</script>
+
+<script id="act2a-template" type="text/template">
+    <div id="act2a" class="act act2a">
+        <div class="left-part-wrap"></div>
+        <div class="tv-wrap">
+            <img class="main-bg" src="img/act2/act2a-bg-tv.png" alt="" onload="$(this).parent().width($(this).width());">
+
+            <div class="slide-wrap">
+                <ul class="slide-list clearfix">
+                    <li class="slide-item">
+                        <div class="sub-slide-wrap">
+                            <ul class="sub-slide-list">
+                                <li class="sub-slide-item">
+                                    <img src="img/act2/act2a-client1-case1.jpg" alt="">
+                                </li>
+                                <li class="sub-slide-item">
+                                    <img src="img/act2/act2a-client1-case2.jpg" alt="">
+                                </li>
+                                <li class="sub-slide-item">
+                                    <img src="img/act2/act2a-client1-case3.jpg" alt="">
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="slide-item">
+                        <div class="sub-slide-wrap">
+                            <ul class="sub-slide-list">
+                                <li class="sub-slide-item">
+                                    <img src="img/act2/act2a-client2-case1.jpg"
+                                         alt="">
+                                </li>
+                                <li class="sub-slide-item">
+                                    <img src="img/act2/act2a-client2-case2.jpg"
+                                         alt="">
+                                </li>
+                                <li class="sub-slide-item">
+                                    <img src="img/act2/act2a-client2-case3.jpg"
+                                         alt="">
+                                </li>
+                                <li class="sub-slide-item">
+                                    <img src="img/act2/act2a-client2-case4.jpg"
+                                         alt="">
+                                </li>
+                                <li class="sub-slide-item">
+                                    <img src="img/act2/act2a-client2-case5.jpg"
+                                         alt="">
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="slide-item">
+                        <div class="sub-slide-wrap">
+                            <ul class="sub-slide-list">
+                                <li class="sub-slide-item">
+                                    <img src="img/act2/act2a-client3-case1.jpg"
+                                         alt="">
+                                </li>
+                                <li class="sub-slide-item">
+                                    <img src="img/act2/act2a-client3-case2.jpg"
+                                         alt="">
+                                </li>
+                                <li class="sub-slide-item">
+                                    <img src="img/act2/act2a-client3-case3.jpg"
+                                         alt="">
+                                </li>
+                                <li class="sub-slide-item">
+                                    <img src="img/act2/act2a-client3-case4.jpg"
+                                         alt="">
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="slide-item">
+                        <div class="sub-slide-wrap">
+                            <ul class="sub-slide-list">
+                                <li class="sub-slide-item">
+                                    <img src="img/act2/act2a-client4-case1.jpg"
+                                         alt="">
+                                </li>
+                                <li class="sub-slide-item">
+                                    <img src="img/act2/act2a-client4-case2.jpg"
+                                         alt="">
+                                </li>
+                                <li class="sub-slide-item">
+                                    <img src="img/act2/act2a-client4-case3.jpg"
+                                         alt="">
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="slide-item">
+                        <div class="sub-slide-wrap">
+                            <ul class="sub-slide-list">
+                                <li class="sub-slide-item">
+                                    <img src="img/act2/act2a-client5-case1.jpg"
+                                         alt="">
+                                </li>
+                                <li class="sub-slide-item">
+                                    <img src="img/act2/act2a-client5-case2.jpg"
+                                         alt="">
+                                </li>
+                                <li class="sub-slide-item">
+                                    <img src="img/act2/act2a-client5-case3.jpg"
+                                         alt="">
+                                </li>
+                                <li class="sub-slide-item">
+                                    <img src="img/act2/act2a-client5-case4.jpg"
+                                         alt="">
+                                </li>
+                                <li class="sub-slide-item">
+                                    <img src="img/act2/act2a-client5-case5.jpg"
+                                         alt="">
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="slide-item">
+                        <div class="sub-slide-wrap">
+                            <ul class="sub-slide-list">
+                                <li class="sub-slide-item">
+                                    <img src="img/act2/act2a-client6-case1.jpg"
+                                         alt="">
+                                </li>
+                                <li class="sub-slide-item">
+                                    <img src="img/act2/act2a-client6-case2.jpg"
+                                         alt="">
+                                </li>
+                                <li class="sub-slide-item">
+                                    <img src="img/act2/act2a-client6-case3.jpg"
+                                         alt="">
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="slide-item">
+                        <div class="sub-slide-wrap">
+                            <ul class="sub-slide-list">
+                                <li class="sub-slide-item">
+                                    <img src="img/act2/act2a-client7-case2.jpg"
+                                         alt="">
+                                </li>
+                                <li class="sub-slide-item">
+                                    <img src="img/act2/act2a-client7-case1.jpg"
+                                         alt="">
+                                </li>
+                                <li class="sub-slide-item">
+                                    <img src="img/act2/act2a-client7-case3.jpg"
+                                         alt="">
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="slide-item">
+                        <div class="sub-slide-wrap">
+                            <ul class="sub-slide-list">
+                                <li class="sub-slide-item">
+                                    <img src="img/act2/act2a-client8-case1.jpg"
+                                         alt="">
+                                </li>
+                                <li class="sub-slide-item">
+                                    <img src="img/act2/act2a-client8-case2.jpg"
+                                         alt="">
+                                </li>
+                                <li class="sub-slide-item">
+                                    <img src="img/act2/act2a-client8-case3.jpg"
+                                         alt="">
+                                </li>
+                                <li class="sub-slide-item">
+                                    <img src="img/act2/act2a-client8-case4.jpg"
+                                         alt="">
+                                </li>
+                                <li class="sub-slide-item">
+                                    <img src="img/act2/act2a-client8-case5.jpg"
+                                         alt="">
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="slide-item">
+                        <div class="sub-slide-wrap">
+                            <ul class="sub-slide-list">
+                                <li class="sub-slide-item">
+                                    <img src="img/act2/act2a-client9-case1.jpg"
+                                         alt="">
+                                </li>
+                                <li class="sub-slide-item">
+                                    <img src="img/act2/act2a-client9-case2.jpg"
+                                         alt="">
+                                </li>
+                                <li class="sub-slide-item">
+                                    <img src="img/act2/act2a-client9-case3.jpg"
+                                         alt="">
+                                </li>
+                                <li class="sub-slide-item">
+                                    <img src="img/act2/act2a-client9-case4.jpg"
+                                         alt="">
+                                </li>
+                                <li class="sub-slide-item">
+                                    <img src="img/act2/act2a-client9-case5.jpg"
+                                         alt="">
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="pclient">
+                <img src="img/act2/act2a-bg-button-pclient.png"
+                     alt="">
+            </div>
+            <div class="nclient">
+                <img src="img/act2/act2a-bg-button-nclient.png"
+                     alt="">
+            </div>
+            <div class="ppage">
+                <img src="img/act2/act2a-bg-button-ppage.png"
+                     alt="">
+            </div>
+            <div class="npage">
+                <img src="img/act2/act2a-bg-button-npage.png"
+                     alt="">
+            </div>
+        </div>
+        <div class="bottom">
+            <img src="img/act2/act2a-bg-bottom.png" alt=""
+                 onload="$(this).parent().width($(this).width());">
+        </div>
+        <div class="back-wrap">
+            <img src="img/act2/act2a-bg-back.png" alt="">
+        </div>
+    </div>
+</script>
+
+
+<script id="act2a-left-template" type="text/template">
+    <div class="left-wrap">
+        <img src="img/act2/act2a-bg-hand.png" alt="" onload="$(this).parent().width($(this).width());">
+
+        <div class="sub">
+            <img src="<%=icon%>" alt="">
+        </div>
+        <div class="sub">
+            <img src="<%=text%>" alt="">
+        </div>
+    </div>
+</script>
+
+<script type="text/javascript">
+    var dataClients = {
+        client0: {
+            icon1: 'img/act2/act2a-bg-icon1.png',
+            text1: 'img/act2/act2a-bg-text1.png'
+        },
+        client1: {
+            icon1: 'img/act2/act2a-bg-icon2.png',
+            text1: 'img/act2/act2a-bg-text2.png'
+        },
+        client2: {
+            icon1: 'img/act2/act2a-bg-icon3.png',
+            text1: 'img/act2/act2a-bg-text3.png'
+        },
+        client3: {
+            icon1: 'img/act2/act2a-bg-icon4.png',
+            text1: 'img/act2/act2a-bg-text4.png'
+        },
+        client4: {
+            icon1: 'img/act2/act2a-bg-icon5.png',
+            text1: 'img/act2/act2a-bg-text5.png'
+        },
+        client5: {
+            icon1: 'img/act2/act2a-bg-icon6.png',
+            text1: 'img/act2/act2a-bg-text6.png'
+        },
+        client6: {
+            icon1: 'img/act2/act2a-bg-icon7.png',
+            text1: 'img/act2/act2a-bg-text7.png'
+        },
+        client7: {
+            icon1: 'img/act2/act2a-bg-icon8.png',
+            text1: 'img/act2/act2a-bg-text8.png'
+        },
+        client8: {
+            icon1: 'img/act2/act2a-bg-icon9.png',
+            text1: 'img/act2/act2a-bg-text9.png'
+        }
+    }
+
+    var reRoadImg = ['img/act0/act0-bg-title.png', 'img/act2/act2a-client2-case4.jpg', 'img/act2/act2a-bg-text9.png', 'img/act2/act2a-client2-case3.jpg', 'img/act2/act2a-bg-icon2.png', 'img/act2/act2-bg-title.png', 'img/act2/act2a-client7-case2.jpg', 'img/act2/act2a-bg-text8.png', 'img/act0/act0-bg1.png', 'img/act2/act2a-bg-back.png', 'img/act2/act2-clinets-5.png', 'img/menu/menu-bg.png', 'img/act2/act2-clinets-2-hover.png', 'img/act4/act4-text-img3.png', 'img/menu/menu-about.png', 'img/act2/act2a-client1-case2.jpg', 'img/act2/act2a-bg-icon7.png', 'img/act2/act2a-bg-text6.png', 'img/act2/act2a-bg-bottom.png', 'img/act2/act2a-client8-case2.jpg', 'img/act2/act2a-bg-button-npage.png', 'img/act2/act2a-bg-text2.png', 'img/act2/act2-bg-main.png', 'img/act2/act2a-bg-text4.png', 'img/act2/act2a-client4-case2.jpg', 'img/act2/act2a-client5-case5.jpg', 'img/menu/menu-contact.png', 'img/act2/act2-clinets-8.png', 'img/act2/act2a-client9-case5.jpg', 'img/act2/act2a-client5-case4.jpg', 'img/act4/act4-bg-title.png', 'img/menu/menu-clients.png', 'img/act3/act3-bg-main.png', 'img/act2/act2a-bg-text7.png', 'img/menu/menu-home.png', 'img/act1/act1-bg-hand1p.png', 'img/act0/act00-loading-bg.png', 'img/act1/act1-bg-hand2k.png', 'img/act2/act2-clinets-1.png', 'img/act1/act1-bg-title.png', 'img/act2/act2a-bg-tv.png', 'img/act2/act2a-client2-case1.jpg', 'img/act2/act2a-client3-case2.jpg', 'img/act3/act3-bg-main-old.png', 'img/act0/act0-bg-hand3.png', 'img/act0/act0-bg-center.png', 'img/act2/act2a-bg-icon8.png', 'img/act3/act3-bg-title.png', 'img/act2/act2a-client7-case3.jpg', 'img/act4/act4-bg-button.png', 'img/act2/act2a-client3-case3.jpg', 'img/act2/act2a-client8-case1.jpg', 'img/Comp/Comp_1_00023.png', 'img/Comp/Comp_1_00043.png', 'img/Comp/Comp_1_00027.png', 'img/Comp/Comp_1_00024.png', 'img/Comp/Comp_1_00021.png', 'img/Comp/Comp_1_00042.png', 'img/Comp/Comp_1_00017.png', 'img/Comp/Comp_1_00009.png', 'img/Comp/Comp_1_00034.png', 'img/Comp/Comp_1_00003.png', 'img/Comp/Comp_1_00025.png', 'img/Comp/Comp_1_00035.png', 'img/Comp/Comp_1_00020.png', 'img/Comp/Comp_1_00010.png', 'img/Comp/Comp_1_00036.png', 'img/Comp/Comp_1_00007.png', 'img/Comp/Comp_1_00001.png', 'img/Comp/Comp_1_00031.png', 'img/Comp/Comp_1_00022.png', 'img/Comp/Comp_1_00028.png', 'img/Comp/Comp_1_00018.png', 'img/Comp/Comp_1_00006.png', 'img/Comp/Comp_1_00004.png', 'img/Comp/Comp_1_00033.png', 'img/Comp/Comp_1_00037.png', 'img/Comp/Comp_1_00019.png', 'img/Comp/Comp_1_00032.png', 'img/Comp/Comp_1_00012.png', 'img/Comp/Comp_1_00029.png', 'img/Comp/Comp_1_00026.png', 'img/Comp/Comp_1_00002.png', 'img/Comp/Comp_1_00008.png', 'img/Comp/Comp_1_00040.png', 'img/Comp/Comp_1_00039.png', 'img/Comp/Comp_1_00038.png', 'img/Comp/Comp_1_00014.png', 'img/Comp/Comp_1_00005.png', 'img/Comp/Comp_1_00011.png', 'img/Comp/Comp_1_00013.png', 'img/Comp/Comp_1_00015.png', 'img/Comp/Comp_1_00041.png', 'img/Comp/Comp_1_00000.png', 'img/Comp/Comp_1_00030.png', 'img/Comp/Comp_1_00016.png', 'img/Comp/Comp_1_00044.png', 'img/act2/act2a-bg-icon3.png', 'img/act2/act2-clinets-4.png', 'img/act2/act2a-client9-case2.jpg', 'img/act1/act1-bg-hand2p.png', 'img/act2/act2-clinets-5-hover.png', 'img/act2/act2-clinets-1-hover.png', 'img/act2/act2-clinets-4-hover.png', 'img/act2/act2a-client2-case5.jpg', 'img/act2/act2-clinets-3.png', 'img/act1/act1-bg.png', 'img/act2/act2a-bg-icon5.png', 'img/act2/act2-clinets-7.png', 'img/act2/act2a-client3-case1.jpg', 'img/act2/act2a-client9-case3.jpg', 'img/act2/act2a-client1-case3.jpg', 'img/act4/act4-text-img5.png', 'img/act2/act2a-bg-icon6.png', 'img/act4/act4-bg-button-point.png', 'img/act2/act2a-client5-case3.jpg', 'img/act2/act2-clinets-9-hover.png', 'img/act4/act4-text-img2.png', 'img/act2/act2-clinets-7-hover.png', 'img/act0/act0-bg-bottom.png', 'img/act2/act2-clinets-2.png', 'img/act4/act4-text-img1.png', 'img/act2/act2-clinets-9.png', 'img/act4/act4-qr.png', 'img/act3/act3-bg-hand.png', 'img/act2/act2a-client4-case3.jpg', 'img/act2/act2a-client3-case4.jpg', 'img/act2/act2a-client5-case1.jpg', 'img/act1/act1-bg-hand1k.png', 'img/act2/act2a-bg-button-ppage.png', 'img/act2/act2a-client9-case1.jpg', 'img/act2/act2a-bg-text1.png', 'img/act0/act0-bg-hand2.png', 'img/act2/act2a-bg-text3.png', 'img/act0/act0-bg-hand1.png', 'img/act2/act2a-bg-text5.png', 'img/act2/act2a-bg-icon1.png', 'img/act2/act2a-bg-hand.png', 'img/act2/act2a-client6-case2.jpg', 'img/act0/act0-bg-logo.png', 'img/act4/act4-bg-sublogo.png', 'img/act1/act1-bg-hand1.png', 'img/act2/act2-clinets-6.png', 'img/menu/menu-works.png', 'img/act2/act2a-bg-button-pclient.png', 'img/act2/act2a-client1-case1.jpg', 'img/act2/act2a-client5-case2.jpg', 'img/act2/act2a-client7-case1.jpg', 'img/act0/act0-bg-top.png', 'img/act2/act2a-client4-case1.jpg', 'img/small-arrow.png', 'img/act2/act2a-client2-case2.jpg', 'img/act2/act2a-client6-case1.jpg', 'img/menu/menu-trigger.png', 'img/act2/act2a-bg-icon4.png', 'img/act2/act2a-client8-case3.jpg', 'img/act2/act2-clinets-3-hover.png', 'img/act2/act2a-bg-icon9.png', 'img/act1/act1-bg-hand2.png', 'img/act2/act2a-client8-case4.jpg', 'img/act2/act2a-bg-button-nclient.png', 'img/act2/act2-clinets-6-hover.png', 'img/act2/act2a-client8-case5.jpg', 'img/act4/act4-text-img4.png', 'img/act2/act2a-client9-case4.jpg', 'img/act2/act2a-client6-case3.jpg', 'img/act2/act2-clinets-8-hover.png'];    </script>
+
+<script id="act3-template" type="text/template">
+    <div id="act3" class="act act3">
+        <div class="film">
+            <img src="img/act3/act3-bg-main.png" alt=""
+                 onload="$(this).parent().width($(this).width());">
+        </div>
+        <div class="hand">
+            <img src="img/act3/act3-bg-hand.png" alt=""
+                 onload="$(this).parent().width($(this).width());">
+        </div>
+        <div class="title">
+            <img src="img/act3/act3-bg-title.png" alt=""
+                 onload="$(this).parent().width($(this).width());">
+        </div>
+    </div>
+</script>
+
+<script id="act4-template" type="text/template">
+    <div id="act4" class="act act4">
+        <div class="title">
+            <div class="logo">
+                <img src="img/act4/act4-bg-title.png" alt="" />
+            </div>
+            <div class="content clearfix">
+                <div class="sublogo">
+                    <img src="img/act4/act4-bg-sublogo.png" alt="" />
+                </div>
+                <div class="text-wrap">
+                    <div class="sub-img">
+                        <img src="img/act4/act4-text-img1.png" alt="">
+                    </div>
+                    <div class="sub-text">
+                        中国 上海<br>
+                        徐汇区天钥桥路909号<br>
+                        D1国际创意空间3号楼606室
+                    </div>
+                </div>
+                <div class="text-wrap">
+                    <div class="sub-img">
+                        <img src="img/act4/act4-text-img2.png" alt="">
+                    </div>
+                    <div class="sub-text">
+                        (86 21) 6456 9833
+                    </div>
+                    <div class="sub-img second-line">
+                        <img src="img/act4/act4-text-img4.png"alt="">
+                    </div>
+                    <div class="sub-text">
+                        (86 21) 6456 9958
+                    </div>
+                </div>
+                <div class="text-wrap" style="margin: 0;">
+                    <div class="sub-img">
+                        <img src="img/act4/act4-text-img3.png" alt="">
+                    </div>
+                    <div class="sub-text">
+                        <a href="mailto:business@imagchina.com">business@imagchina.com</a>
+                    </div>
+                    <div class="sub-img second-line">
+                        <img src="img/act4/act4-text-img5.png" alt="">
+                    </div>
+                    <div class="sub-text">
+                        <a href="mailto:career@imagchina.com">career@imagchina.com</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="canvas-wrap">
+            <div class="press-button">
+                <img class="first" src="img/act4/act4-bg-button.png"
+                     alt="" onload="$(this).parent().width($(this).width());">
+                <div class="inner">
+                    <img src="img/act4/act4-bg-button-point.png"
+                         alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script id="act4a-template" type="text/template">
+    <div id="act4a" class="act act4a">
+        <div class="title">
+            <div class="logo">
+                <img src="img/act4/act4-bg-title.png"  alt="" />
+            </div>
+            <div class="content clearfix">
+                <div class="sublogo">
+                    <img src="img/act4/act4-bg-sublogo.png"  alt="" />
+                </div>
+                <div class="text-wrap">
+                    <div class="sub-img">
+                        <img src="img/act4/act4-text-img1.png"  alt="">
+                    </div>
+                    <div class="sub-text">
+                        中国 上海<br>
+                        徐汇区天钥桥路909号<br>
+                        D1国际创意空间3号楼606室
+                    </div>
+                </div>
+                <div class="text-wrap">
+                    <div class="sub-img">
+                        <img src="img/act4/act4-text-img2.png"  alt="">
+                    </div>
+                    <div class="sub-text">
+                        (86 21) 6456 9833
+                    </div>
+                    <div class="sub-img second-line">
+                        <img src="img/act4/act4-text-img4.png"  alt="">
+                    </div>
+                    <div class="sub-text">
+                        (86 21) 6456 9958
+                    </div>
+                </div>
+                <div class="text-wrap" style="margin: 0;">
+                    <div class="sub-img">
+                        <img src="img/act4/act4-text-img3.png"  alt="">
+                    </div>
+                    <div class="sub-text">
+                        <a href="mailto:business@imagchina.com">business@imagchina.com</a>
+                    </div>
+                    <div class="sub-img second-line">
+                        <img src="img/act4/act4-text-img5.png"  alt="">
+                    </div>
+                    <div class="sub-text">
+                        <a href="mailto:career@imagchina.com">career@imagchina.com</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="qr-wrap">
+            <img src="img/act4/act4-qr.png" alt=""
+                 onload="$(this).parent().width($(this).width());">
+        </div>
+        <div class="back-wrap">
+            <img src="img/act2/act2a-bg-back.png" alt="">
+        </div>
+    </div>
+</script>
+</body>
+</html>
