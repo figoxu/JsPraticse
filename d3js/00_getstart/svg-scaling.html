@@ -31,7 +31,7 @@
 
 </body>
 <script type="text/javascript">
-    var dataset = _.map(_.range(15), function (i) {
+    var dataset = _.map(_.range(75), function (i) {
         return Math.random() * 5000;
     });
     var w = 400, h = 300;
@@ -46,11 +46,14 @@
             .domain([0, d3.max(dataset) * 1.1])
             .range([0, h]);
 
+    var colorScale = d3.scale.linear()
+            .domain([0, dataset.length])
+            .range(['yellow', 'green']);
+
     svg.selectAll('rect')
             .data(dataset)
             .enter()
             .append('rect')
-            .attr('class', 'bar')
             .attr('x', function (d, i) {
                 return xScale(d);
             })
@@ -60,6 +63,9 @@
             .attr('width', xScale.rangeBand())
             .attr('height', function (d) {
                 return yScale(d);
+            })
+            .attr('fill', function (d, i) {
+                return colorScale(i);
             });
 </script>
 </html>
