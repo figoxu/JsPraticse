@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="../d3.v4.js">//</script>
+    <style type="text/css">
+        body {
+            padding-top: 50px;
+            padding-left: 100px;
+        }
+
+        .bar {
+            display: inline-block;
+            width: 20px;
+            height: 75px;
+            margin-right: 2px;
+            background-color: teal;
+        }
+    </style>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+    var dataset = [5, 10, 15, 20, 25];
+
+    d3.select('body').selectAll('div')
+            .data(dataset)
+            .enter()
+            .append('div')
+            .attr('class', 'bar')
+            .style('height',function(d){
+                return d*7+"px"
+            });
+
+</script>
+</html>
