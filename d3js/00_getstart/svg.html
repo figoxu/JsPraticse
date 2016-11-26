@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="../d3.v4.js">//</script>
+    <style type="text/css">
+        body {
+            padding-top: 50px;
+            padding-left: 100px;
+        }
+
+        #chartArea {
+            width: 400px;
+            height: 300px;
+            background-color: #CCC;
+        }
+
+        .bar {
+            display: inline-block;
+            /* Gets overriden by D3-assigned height below */
+            margin-right: 2px;
+            fill: teal;
+        }
+    </style>
+</head>
+<body>
+<div id="chartArea"></div>
+
+
+</body>
+<script type="text/javascript">
+    var dataset = [5, 10, 15, 20, 25];
+
+    var svg = d3.select('#chartArea').append('svg')
+            .attr('width', 400)
+            .attr('height', 300);
+
+    var multiplier = 8;
+
+    svg.selectAll('rect')
+            .data(dataset)
+            .enter()
+            .append('rect')
+            .attr('class', 'bar')
+            .attr('x', function (d, i) {
+                return i * 22;
+            })
+            .attr('y', function (d) {
+                return 300 - d * multiplier;
+            })
+            .attr('width', 20)
+            .attr('height', function (d) {
+                return d * multiplier;
+            });
+
+</script>
+</html>
