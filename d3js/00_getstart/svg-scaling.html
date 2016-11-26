@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title></title>
     <script type="text/javascript" src="../d3.js">//</script>
+    <script type="text/javascript" src="../underscore-min.js">//</script>
     <style type="text/css">
         body {
             padding-top: 50px;
@@ -30,31 +31,33 @@
 
 </body>
 <script type="text/javascript">
-        var dataset = [ 5, 10, 15, 20, 25, 46, 36, 24, 36 ];
-        var w = 400, h = 300;
+    var dataset = _.map(_.range(15), function (i) {
+        return Math.random() * 5000;
+    });
+    var w = 400, h = 300;
 
-        var svg = d3.select('#chartArea').append('svg')
-                .attr('width', w)
-                .attr('height', h);
+    var svg = d3.select('#chartArea').append('svg')
+            .attr('width', w)
+            .attr('height', h);
 
-        var yScale = d3.scale.linear()
-                .domain([0, 50])
-                .range([0, h]);
+    var yScale = d3.scale.linear()
+            .domain([0, d3.max(dataset) * 1.1])
+            .range([0, h]);
 
-        svg.selectAll('rect')
-                .data(dataset)
-                .enter()
-                .append('rect')
-                .attr('class', 'bar')
-                .attr('x', function (d, i) {
-                    return i * 22;
-                })
-                .attr('y', function (d) {
-                    return h - yScale(d);
-                })
-                .attr('width', 20)
-                .attr('height', function (d) {
-                    return yScale(d);
-                });
+    svg.selectAll('rect')
+            .data(dataset)
+            .enter()
+            .append('rect')
+            .attr('class', 'bar')
+            .attr('x', function (d, i) {
+                return i * 22;
+            })
+            .attr('y', function (d) {
+                return h - yScale(d);
+            })
+            .attr('width', 20)
+            .attr('height', function (d) {
+                return yScale(d);
+            });
 </script>
 </html>
