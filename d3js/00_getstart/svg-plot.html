@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="../d3.js">//</script>
+    <script type="text/javascript" src="../underscore-min.js">//</script>
+    <style type="text/css">
+        body {
+            padding-top: 50px;
+            padding-left: 100px;
+        }
+
+        #chartArea {
+            width: 400px;
+            height: 300px;
+            background-color: #CCC;
+        }
+
+        .bubble {
+            opacity:0.3;
+            fill: blue;
+        }
+    </style>
+</head>
+<body>
+<div id="chartArea"></div>
+
+
+</body>
+<script type="text/javascript">
+    var dataset = _.map(_.range(10), function (i) {
+        return {
+            x:Math.random()*100,
+            y:Math.random()*100,
+            r:Math.random()*100,
+        };
+    });
+    var margin = {top:25,right:10,bottom:20,left:40};
+    var w = 400-margin.left-margin.right, h = 300-margin.top-margin.bottom;
+
+    var svg = d3.select('#chartArea').append('svg')
+            .attr('width', w+margin.left+margin.right)
+            .attr('height', h+margin.top+margin.bottom)
+            .append('g')
+            .attr('transform','translate('+margin.left+','+margin.top+')');
+
+    var xScale = d3.scale.linear().domain([0,100]).range([0,w]);
+
+    var yScale = d3.scale.linear()
+            .domain([0, d3.max(dataset,function(d){
+                return d.y;
+            })])
+            .range([h, 0]);
+
+    var colorScale = d3.scale.linear()
+            .domain([0, dataset.length])
+            .range(['yellow', 'green']);
+
+    svg.selectAll('circle')
+            .data(dataset)
+            .enter()
+            .append('circle')
+            .attr('class','bubble')
+            .attr('cx', function (d) {
+                return xScale(d.x);
+            })
+            .attr('cy', function(d){
+                return yScale(d.y)
+            })
+            .attr('r', function(d){
+                return d.r;
+            });
+</script>
+</html>
