@@ -1,0 +1,38 @@
+.module {
+	padding: 20px;
+	text-align: center;
+	color: #eee;
+	background-color: #607d8b;
+	border-radius: 2px;
+}
+
+.module:hover {
+	background-color:#eee;
+	cursor: pointer;
+	color: #607d8b;
+}
+
+[class*='col-'] {
+	float: left;
+	width: 25%;
+	padding-right: 20px;
+	padding-bottom: 20px;
+}
+
+[class*='col-']:last-of-type {
+	padding-right:0;
+}
+
+.grid {
+	margin: 0;
+}
+
+.grid-pad {
+	padding: 10px 0;
+}
+
+*, *:after, *:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
