@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Angular Lessons</title>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+
+    <base href="./">
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/tachyons@4.5.5/css/tachyons.min.css">
+
+    <link rel="stylesheet"
+          href="./styles.css">
+    <script src="https://unpkg.com/core-js/client/shim.min.js"></script>
+    <script src="https://unpkg.com/zone.js/dist/zone.js"></script>
+    <script src="https://unpkg.com/systemjs@0.19.38/dist/system.src.js"></script>
+    <script>
+        const app = {'src': './src'};
+        const npm = 'https://unpkg.com';
+        const transpiler = 'ts';
+        const typescriptOptions = {
+            "target": "es5",
+            "module": "commonjs",
+            "moduleResolution": "node",
+            "sourceMap": true,
+            "emitDecoratorMetadata": true,
+            "experimentalDecorators": true,
+            "removeComments": false,
+            "suppressImplicitAnyIndexErrors": true
+        };
+        const meta = {
+            'typescript': {"exports": "ts"}
+        };
+        const packages = {
+            src: {
+                main: './main.ts',
+                defaultExtension: 'ts'
+            },
+            rxjs: {
+                main: 'bundles/Rx.min.js',
+                defaultExtension: 'js'
+            }
+        };
+
+        const browserCompiler = {
+            'ts': `${npm}/plugin-typescript@5.1.2/lib/plugin.js`,
+            'typescript': `${npm}/typescript@2.0.2/lib/typescript.js`,
+        };
+
+        const dependencies = fetch('./package.json')
+            .then(pkg => pkg.json())
+            .then(body => body.dependencies);
+
+        dependencies.then(deps => {
+            const depInfo = Object.keys(deps)
+                .map(key => {
+                    const version = deps[key].startsWith('^')
+                        ? deps[key].slice(1)
+                        : deps[key]
+
+                    const pkg = key
+                    const org = pkg.split('/')[0]
+                    const repo = pkg.split('/')[1]
+                    return {pkg, org, repo, version}
+                })
+
+
+            const ngInfo = depInfo.filter(info => info.org === '@angular')
+                .reduce((acc, {pkg, org, repo, version}) => Object.assign(acc, {
+                    [`${pkg}`]: `${npm}/${pkg}@${version}/bundles/${repo}.umd.js`
+                }), {});
+
+            const libInfo = depInfo
+                .filter(info => info.org !== '@angular')
+                .filter(info => info.org !== 'core-js')
+                .filter(info => info.org !== 'zone.js')
+                .filter(info => info.org !== 'ts-helpers')
+                .reduce((acc, {pkg, org, repo, version}) => Object.assign(acc, {
+                    [`${pkg}`]: `${npm}/${pkg}@${version}`
+                }), {});
+
+            return {
+                paths: {
+                    'zone.js/*': 'https://unpkg.com/zone.js@0.6.23?main=browser',
+                    'core-js/*': 'https://unpkg.com/core-js/client/shim.min.js'
+                },
+                transpiler,
+                typescriptOptions,
+                meta,
+                packages,
+                map: Object.assign(app, browserCompiler, libInfo, ngInfo)
+            };
+        })
+            .then(config => System.config(config))
+            .then(() => System.import('src'))
+            .catch(function (err) {
+                console.error(err);
+            });
+    </script>
+</head>
+<body>
+<app>Loading...</app>
+</body>
+</html>
