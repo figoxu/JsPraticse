@@ -1,1 +1,58 @@
-Table
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>FixedHeaderTable Demo</title>
+</head>
+<body>
+<div class="styles">
+
+</div>
+<div class="container_16 table_options">
+    <div class="grid_3 prefix_1 alpha">
+        <h2>Table Properties</h2>
+        <fieldset>
+            <label for="rows">rows</label>
+            <input id="rows" type="text" value="" />
+        </fieldset>
+        <fieldset>
+            <label for="columns">columns</label>
+            <input id="columns" type="text" value="" />
+        </fieldset>
+    </div>
+
+    <div class="grid_4">
+        <h2>Table Appearance</h2>
+        <fieldset>
+            <label for="borderWidth">border-width</label>
+            <input id="borderWidth" type="text" value="" placeholder="ex. 1px" />
+        </fieldset>
+        <fieldset>
+            <label for="borderColor">border-color</label>
+            <input id="borderColor" type="text" value="" placeholder="ex. #353535" />
+        </fieldset>
+    </div>
+
+    <div class="grid_3">
+        <h2>&nbsp;</h2>
+        <fieldset>
+            <label for="padding">padding</label>
+            <input id="padding" type="text" value="" placeholder="ex. 5" />
+        </fieldset>
+    </div>
+
+    <div class="grid_2 prefix_2 omega">
+        <a id="buildTable" class="button" href="#">Build Table</a>
+        <a id="runPlugin" class="button" href="#">Run Plugin</a>
+    </div>
+</div>
+
+<div class="container_12">
+    <div id="tablePlaceholder" class="grid_12 alpha omega"></div>
+</div>
+<script type="text/javascript">
+    window.onload = function(){
+        alert("hello world");
+    }
+</script>
+</body>
+</html>
