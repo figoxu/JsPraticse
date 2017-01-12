@@ -1,0 +1,28 @@
+<h1>
+  {{title}}
+  <!-- <button
+    kendoButton
+    (click)="onButtonClick()"
+    [primary]="true">
+    Primary Button
+  </button> -->
+  <kendo-grid
+      [data]="gridView"
+      [sortable]="{ mode: 'multiple' }"
+      [sort]="sort"
+      (sortChange)="sortChange($event)"
+    >
+    <kendo-grid-column field="ProductID" title="Product ID" width="120">
+    </kendo-grid-column>
+    <kendo-grid-column field="ProductName" title="Product Name">
+    </kendo-grid-column>
+    <kendo-grid-column field="UnitPrice" title="Unit Price" width="230">
+    </kendo-grid-column>
+  </kendo-grid>
+  <!-- <kendo-upload
+    [saveUrl]="uploadSaveUrl"
+    [removeUrl]="uploadRemoveUrl"
+    [multiple]="true"
+    (select)="selectEventHandler($event)"
+  ></kendo-upload> -->
+</h1>
