@@ -8,14 +8,16 @@ import {AuthService} from "../auth.service";
       login Works!
     </p>
     <div>
-    <input #usernameRef="ngModel" [(ngModel)]="username" type="text" required minlength="3">
-        {{ usernameRef.errors | json }}
-        <div *ngIf="usernameRef.errors?.required">this is required</div>
-        <div *ngIf="usernameRef.errors?.minlength">should be at least 3 charactors</div>
-    
-    <input #passwordRef="ngModel" [(ngModel)]="password" type="password" required minlength="3">
-        <div *ngIf="passwordRef.errors?.required">this is required</div>
-    <button (click)="onClick(usernameRef.value,passwordRef.va)">Login</button>
+      <form #formRef="ngForm" (ngSubmit)="onSubmit(formRef.value)">
+        <input name="username" #usernameRef="ngModel" [(ngModel)]="username" type="text" required minlength="3">
+            {{ usernameRef.errors | json }}
+            <div *ngIf="usernameRef.errors?.required">this is required</div>
+            <div *ngIf="usernameRef.errors?.minlength">should be at least 3 charactors</div>
+        
+        <input name="password" #passwordRef="ngModel" [(ngModel)]="password" type="password" required minlength="3">
+            <div *ngIf="passwordRef.errors?.required">this is required</div>
+        <button type="submit" >Login</button>
+      </form>
 </div>
   `,
   styles: []
@@ -29,6 +31,10 @@ export class LoginComponent implements OnInit {
   constructor(private service:AuthService) { }
 
   ngOnInit() {
+  }
+
+  onSubmit(formValue) {
+    console.log(formValue);
   }
 
   onClick(){
