@@ -7,6 +7,8 @@ sudo ng generate component first --inline-template --inline-style
 
 sudo ng generate component login --inline-template --inline-style
 sudo ng generate service auth
+sudo ng generate class todo
+sudo ng generate component todo
 
 
 

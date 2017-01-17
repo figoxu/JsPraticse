@@ -6,7 +6,8 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { FirstComponent } from './first/first.component';
 import { LoginComponent } from './login/login.component';
-import {routing} from './app.routes'
+import {routing} from './app.routes';
+import { TodoComponent } from './todo/todo.component'
 
 
 
@@ -14,7 +15,8 @@ import {routing} from './app.routes'
   declarations: [
     AppComponent,
     FirstComponent,
-    LoginComponent
+    LoginComponent,
+    TodoComponent
   ],
   imports: [
     BrowserModule,
