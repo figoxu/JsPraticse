@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Todo} from "./todo";
+import {UUID} from 'angular2-uuid'
 
 @Injectable()
 export class TodoService {
@@ -9,7 +10,7 @@ export class TodoService {
 
   addTodo(todoItem:string):Todo[]{
     this.todos.push({
-      id:1,
+      id:UUID.UUID(),
       desc:todoItem,
       completed:false
     });

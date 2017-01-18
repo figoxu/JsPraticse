@@ -10,7 +10,7 @@ sudo ng generate service auth
 sudo ng generate class todo
 sudo ng generate component todo
 
-
+npm i --save angular2-uuid
 
 
 
