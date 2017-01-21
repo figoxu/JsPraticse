@@ -1,1 +1,2 @@
-<div [@signal]="'go'" class="traffic-light"></div>
+<div [@signal]="signal" class="traffic-light"></div>
+<button (click)="onGoClick()">{{signal}}</button>

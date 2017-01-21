@@ -7,11 +7,23 @@ import {Component, trigger, state, style} from '@angular/core';
       state('go',style({
         'background-color':'green'
       }))
+      ,
+      state('stop',style({
+        'background-color':'red'
+      }))
     ])
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app works!';
+  signal='stop'
+
+  onGoClick(){
+    if(this.signal==='stop'){
+      this.signal='go'
+    }else{
+      this.signal='stop'
+    }
+  }
 }
