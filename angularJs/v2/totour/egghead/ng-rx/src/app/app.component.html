@@ -1,4 +1,4 @@
-<h1>
-  <button (click)="click$.next()">Update</button>
-</h1>
+<input #inputNum type="number" value="0">
+  <button (click)="click$.next(inputNum.value)">Update</button>
+
 <h1>{{clock  | async | date:'medium'}}</h1>
