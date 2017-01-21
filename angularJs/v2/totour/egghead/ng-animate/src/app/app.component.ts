@@ -4,9 +4,8 @@ import {Component, trigger, state, style, transition, animate} from '@angular/co
   selector: 'app-root',
   animations:[
     trigger('signal',[
-      state('void',style({
-        'background-color':'blue',
-        'height':'100px'
+      state('void', style({
+        'transform':'translateY(-100%)'
       })),
       state('go',style({
         'background-color':'green',
@@ -16,7 +15,6 @@ import {Component, trigger, state, style, transition, animate} from '@angular/co
         'background-color':'red',
         'height':'50px'
       })),
-      transition('void => *',animate(5000)),
       transition('* => *',animate(500))
     ])
   ],
@@ -24,13 +22,17 @@ import {Component, trigger, state, style, transition, animate} from '@angular/co
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  signal='stop'
+  signal='stop';
+  toggleFlag=true;
 
   onGoClick(){
-    if(this.signal==='stop'){
+    this.signal='stop'
+  }
+  onStopClick(){
       this.signal='go'
-    }else{
-      this.signal='stop'
-    }
+  }
+
+  onToggleClick(){
+    this.toggleFlag=!this.toggleFlag
   }
 }

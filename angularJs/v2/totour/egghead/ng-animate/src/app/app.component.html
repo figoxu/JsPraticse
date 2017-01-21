@@ -1,2 +1,5 @@
-<div [@signal]="signal" class="traffic-light"></div>
-<button (click)="onGoClick()">{{signal}}</button>
+<div [@signal]="signal" class="traffic-light"  *ngIf="toggleFlag" ></div>
+<button (click)="onGoClick()">Go</button>
+<button (click)="onStopClick()">Stop</button>
+<hr>
+<button (click)="onToggleClick()">Toggle</button>
