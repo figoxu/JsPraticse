@@ -4,11 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import {AppStoreModule} from "../store"
+import {AppStoreModule} from "../store";
+import { ClockComponent } from './clock/clock.component'
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ClockComponent
   ],
   imports: [
     BrowserModule,

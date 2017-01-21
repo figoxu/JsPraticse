@@ -1,4 +1,3 @@
 <input #inputNum type="number" value="0">
   <button (click)="click$.next(inputNum.value)">Update</button>
-
-<h1>{{clock  | async | date:'medium'}}</h1>
+<app-clock [time]="time | async"></app-clock>

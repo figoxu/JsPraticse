@@ -7,8 +7,7 @@ import 'rxjs/add/operator/scan'
 import 'rxjs/add/operator/mapTo'
 import {Subject} from "rxjs/Rx";
 import {Store} from "@ngrx/store";
-import {SECOND,HOUR } from "../reducers"
-
+import {SECOND, HOUR} from "../reducers"
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -17,10 +16,10 @@ import {SECOND,HOUR } from "../reducers"
 export class AppComponent {
   click$ = new Subject().map( (value:string)=> ({type:HOUR,payload: parseInt(value) }));
   seconds$ = Observable.interval(1000).mapTo({type:SECOND,payload:3});
-  clock ;
+  time ;
 
   constructor(store:Store<any>){
-    this.clock = store.select("clock");
+    this.time = store.select("clock");
     Observable.merge(
       this.click$,
       this.seconds$
