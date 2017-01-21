@@ -17,9 +17,11 @@ export class AppComponent {
   click$ = new Subject().map( (value:string)=> ({type:HOUR,payload: parseInt(value) }));
   seconds$ = Observable.interval(1000).mapTo({type:SECOND,payload:3});
   time ;
+  people;
 
   constructor(store:Store<any>){
     this.time = store.select("clock");
+    this.people = store.select("people");
     Observable.merge(
       this.click$,
       this.seconds$

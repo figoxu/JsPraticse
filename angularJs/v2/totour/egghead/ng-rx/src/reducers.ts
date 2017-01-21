@@ -3,7 +3,6 @@ export const SECOND='SECOND';
 
 export const clock = (state:Date = new Date(),{type,payload}) => {
   const date = new Date(state.getTime());
-  console.log("@type:",type," @state:",state)
   switch (type){
     case HOUR:
       date.setHours(date.getHours()+payload);
@@ -14,3 +13,19 @@ export const clock = (state:Date = new Date(),{type,payload}) => {
   }
   return state;
 };
+
+const defaultPeople = [
+  {name:"Figo",time:""},
+  {name:"John",time:""},
+  {name:"Nancy",time:""},
+  {name:"Drew",time:""},
+  {name:"Andy",time:""}
+];
+
+export const people = (state = defaultPeople,{type,payload})=>{
+    switch (type){
+      default:
+        return state;
+    }
+};
+
