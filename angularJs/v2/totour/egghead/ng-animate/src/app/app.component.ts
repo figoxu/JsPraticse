@@ -15,13 +15,13 @@ import {Component, trigger, state, style, transition, animate, keyframes} from '
         'background-color':'red',
         'height':'50px'
       })),
-      transition('void => *', animate(8000, keyframes([
+      transition('void <=> *', animate(3000, keyframes([
         style({'transform':'scale(0)'}),
         style({'transform':'scale(.1)'}),
         style({'transform':'scale(.9)'}),
         style({'transform':'scale(1)'})
       ]))),
-      transition('* => *', animate('0.5s 1s cubic-bezier(0.455, 0.03, 0.515, 0.955)'))
+      transition('go <=> stop', animate('0.5s 1s cubic-bezier(0.455, 0.03, 0.515, 0.955)'))
     ])
   ],
   templateUrl: './app.component.html',
