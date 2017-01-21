@@ -4,6 +4,10 @@ import {Component, trigger, state, style, transition, animate} from '@angular/co
   selector: 'app-root',
   animations:[
     trigger('signal',[
+      state('void',style({
+        'background-color':'blue',
+        'height':'100px'
+      })),
       state('go',style({
         'background-color':'green',
         'height':'100px'
@@ -12,6 +16,7 @@ import {Component, trigger, state, style, transition, animate} from '@angular/co
         'background-color':'red',
         'height':'50px'
       })),
+      transition('void => *',animate(5000)),
       transition('* => *',animate(500))
     ])
   ],
