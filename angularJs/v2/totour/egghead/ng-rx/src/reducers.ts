@@ -1,6 +1,7 @@
 export const HOUR='HOUR';
 export const SECOND='SECOND';
 export const ADVANCE='ADVANCE';
+export const RECALL='RECALL';
 
 export const clock = (state:Date = new Date(),{type,payload} = {type:"",payload:0}) => {
   const date = new Date(state.getTime());
@@ -35,7 +36,13 @@ export const people = (state = defaultPeople,{type,payload})=>{
           }
           return person;
         });
-
+      case RECALL:
+        return state.map((person)=>{
+          return {
+            name:person.name,
+            time:payload
+          }
+        });
       default:
         return state;
     }
