@@ -1,0 +1,49 @@
+{
+  "name": "@angular/common",
+  "version": "2.3.1",
+  "description": "Angular - commonly needed directives and services",
+  "main": "bundles/common.umd.js",
+  "module": "index.js",
+  "typings": "index.d.ts",
+  "author": {
+    "name": "angular"
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/core": "2.3.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angular/angular.git"
+  },
+  "bugs": {
+    "url": "https://github.com/angular/angular/issues"
+  },
+  "homepage": "https://github.com/angular/angular#readme",
+  "_id": "@angular/common@2.3.1",
+  "scripts": {},
+  "_shasum": "146c2ed44e02b0f291dd9d4b2e5e2a693057e9bc",
+  "_from": "@angular/common@2.3.1",
+  "_resolved": "https://registry.npmjs.org/@angular/common/-/common-2.3.1.tgz",
+  "_npmVersion": "3.10.3",
+  "_nodeVersion": "6.6.0",
+  "_npmUser": {
+    "name": "angular",
+    "email": "angular-core+npm@google.com"
+  },
+  "dist": {
+    "shasum": "146c2ed44e02b0f291dd9d4b2e5e2a693057e9bc",
+    "tarball": "https://registry.npmjs.org/@angular/common/-/common-2.3.1.tgz"
+  },
+  "maintainers": [
+    {
+      "name": "angular",
+      "email": "angular-core+npm@google.com"
+    }
+  ],
+  "_npmOperationalInternal": {
+    "host": "packages-18-east.internal.npmjs.com",
+    "tmp": "tmp/common-2.3.1.tgz_1481768803533_0.15677107754163444"
+  },
+  "directories": {}
+}

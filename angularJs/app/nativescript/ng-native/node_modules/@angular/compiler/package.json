@@ -1,0 +1,49 @@
+{
+  "name": "@angular/compiler",
+  "version": "2.3.1",
+  "description": "Angular - the compiler library",
+  "main": "bundles/compiler.umd.js",
+  "module": "index.js",
+  "typings": "index.d.ts",
+  "author": {
+    "name": "angular"
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/core": "2.3.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angular/angular.git"
+  },
+  "bugs": {
+    "url": "https://github.com/angular/angular/issues"
+  },
+  "homepage": "https://github.com/angular/angular#readme",
+  "_id": "@angular/compiler@2.3.1",
+  "scripts": {},
+  "_shasum": "0c57f848e41432bac3201c29b645dd4dd099d2f9",
+  "_from": "@angular/compiler@2.3.1",
+  "_resolved": "https://registry.npmjs.org/@angular/compiler/-/compiler-2.3.1.tgz",
+  "_npmVersion": "3.10.3",
+  "_nodeVersion": "6.6.0",
+  "_npmUser": {
+    "name": "angular",
+    "email": "angular-core+npm@google.com"
+  },
+  "dist": {
+    "shasum": "0c57f848e41432bac3201c29b645dd4dd099d2f9",
+    "tarball": "https://registry.npmjs.org/@angular/compiler/-/compiler-2.3.1.tgz"
+  },
+  "maintainers": [
+    {
+      "name": "angular",
+      "email": "angular-core+npm@google.com"
+    }
+  ],
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/compiler-2.3.1.tgz_1481768807686_0.48271482926793396"
+  },
+  "directories": {}
+}

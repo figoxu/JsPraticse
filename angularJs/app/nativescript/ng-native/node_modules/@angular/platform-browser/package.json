@@ -1,0 +1,50 @@
+{
+  "name": "@angular/platform-browser",
+  "version": "2.3.1",
+  "description": "Angular - library for using Angular in a web browser",
+  "main": "bundles/platform-browser.umd.js",
+  "module": "index.js",
+  "typings": "index.d.ts",
+  "author": {
+    "name": "angular"
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/core": "2.3.1",
+    "@angular/common": "2.3.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angular/angular.git"
+  },
+  "bugs": {
+    "url": "https://github.com/angular/angular/issues"
+  },
+  "homepage": "https://github.com/angular/angular#readme",
+  "_id": "@angular/platform-browser@2.3.1",
+  "scripts": {},
+  "_shasum": "114309150876188e0df8841b20ca2359fd5e7cad",
+  "_from": "@angular/platform-browser@2.3.1",
+  "_resolved": "https://registry.npmjs.org/@angular/platform-browser/-/platform-browser-2.3.1.tgz",
+  "_npmVersion": "3.10.3",
+  "_nodeVersion": "6.6.0",
+  "_npmUser": {
+    "name": "angular",
+    "email": "angular-core+npm@google.com"
+  },
+  "dist": {
+    "shasum": "114309150876188e0df8841b20ca2359fd5e7cad",
+    "tarball": "https://registry.npmjs.org/@angular/platform-browser/-/platform-browser-2.3.1.tgz"
+  },
+  "maintainers": [
+    {
+      "name": "angular",
+      "email": "angular-core+npm@google.com"
+    }
+  ],
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/platform-browser-2.3.1.tgz_1481768821277_0.4396030860953033"
+  },
+  "directories": {}
+}
