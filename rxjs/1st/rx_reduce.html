@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="https://unpkg.com/@reactivex/rxjs@5.0.0/dist/global/Rx.js">//</script>
+    <script type="text/javascript">
+        console.clear();
+        var data = ['1', '1', 'foo', '2', '3', '5', 'bar', '8', '13'];
+        console.log(data.length)
+        var source = Rx.Observable.interval(400).take(data.length).map(i => {
+            console.log("@i:",i);
+            return data[i];
+        });
+
+        var result = source.map(x => parseInt(x))
+        .filter(x => !isNaN(x))
+        .reduce((x, y) => x + y);
+        result.subscribe(x => console.log("result",x));
+
+    </script>
+</head>
+<body>
+</body>
+</html>
