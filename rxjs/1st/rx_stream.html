@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/4.1.0/rx.all.js"></script>
+</head>
+<body>
+<a href="#" class="button">BUTTON</a><h4>-</h4>
+
+
+<script type="text/javascript">
+    var button = document.querySelector(".button");
+    var label = document.querySelector("h4");
+
+    var clickStream = Rx.Observable.fromEvent(button,'click');
+
+    var doubleClickStream = clickStream.buffer(()=> clickStream.debounce(250)).map(arr=>arr.length).filter(len => len===2);
+
+    doubleClickStream.subscribe(event=> {
+        label.textContent = 'double click';
+    })
+
+</script>
+</body>
+</html>
