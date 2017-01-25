@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="https://unpkg.com/@reactivex/rxjs@version/dist/global/Rx.js">//</script>
+    <script type="text/javascript">
+        console.clear();
+
+        var source = ['1', '1', 'foo', '2', '3', '5', 'bar', '8', '13'];
+
+        var result = source.map(x => parseInt(x))
+        .filter(x => !isNaN(x))
+        .reduce((x, y) => x + y);
+
+        console.log(result);
+    </script>
+</head>
+<body>
+<div>
+        var source = ['1', '1', 'foo', '2', '3', '5', 'bar', '8', '13'];
+</div>
+
+<div class="blue">
+    source.map(x => parseInt(x))    <br/>
+ <span>> [1, 1, NaN, 2, 3, 5, NaN, 8, 13]</span>
+</div>
+<div class="green">
+    .filter(x => !isNaN(x))   <br/>
+ <span>> [1, 1, 2, 3, 5, 8, 13]</span>
+</div>
+<div class="yellow">
+    .reduce((x, y) => x + y)   <br/>
+  <span>> 33</span>
+</div>
+<style>
+    div{
+        display:block;
+        padding-top: 30px;
+        padding-left: 30px;
+        padding-bottom: 10px;
+    }
+    span {
+        display: block;
+        padding-top: 10px;
+        color: rebeccapurple;
+    }
+    .blue{
+        background-color: cornflowerblue;
+        color: whitesmoke;
+    }
+    .green{
+        background-color: green;
+        color: whitesmoke;
+    }
+    .yellow{
+        background-color: darkorange;
+        color: whitesmoke;
+    }
+</style>
+</body>
+</html>
