@@ -9,3 +9,7 @@
         class="text-left"
         class="text-center"
         class="text-right"
+
+
+
+yarn install should be better than npm install
