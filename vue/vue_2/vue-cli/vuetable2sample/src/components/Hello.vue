@@ -40,8 +40,16 @@
     data () {
       return {
         msg: 'Welcome to Your Vue.js App',
+        myCSS: {
+          ascendingIcon: 'glyphicon glyphicon-chevron-up',
+          descendingIcon: 'glyphicon glyphicon-chevron-down'
+        },
         fields: [
-          'name', 'email', 'birthdate',
+          {
+            name:'name',
+            sortField:'name'
+          },
+          'email', 'birthdate',
           {
             name: 'nickname',
             callback: 'allcap'
@@ -58,7 +66,7 @@
             dataClass: 'right aligned',
             callback: 'formatNumber',
             visible: false
-          }, {
+          },{
             name: 'birthdate',
             titleClass: 'center aligned',
             dataClass: 'center aligned',
