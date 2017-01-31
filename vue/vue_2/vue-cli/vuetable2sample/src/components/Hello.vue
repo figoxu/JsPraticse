@@ -5,6 +5,7 @@
               api-url="http://vuetable.ratiw.net/api/users"
               :fields="fields"
               pagination-path=""
+              :per-page="10"
               @vuetable:pagination-data="onPaginationData"
     ></vuetable>
     <div class="vuetable-pagination ui basic segment grid">
