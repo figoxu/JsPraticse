@@ -2,6 +2,7 @@
   <div class="ui container">
     <h1>{{ msg }}</h1>
     <div class="vuetable-pagination ui basic segment grid">
+      <filter-bar></filter-bar>
       <vuetable-pagination-info ref="paginationInfoTop"
       ></vuetable-pagination-info>
       <vuetable-pagination ref="paginationTop"
@@ -37,9 +38,11 @@
   import accounting from 'accounting'
   import moment from 'moment'
   import DetailRow from './DetailRow'
+  import FilterBar from './FilterBar'
   import Vue from 'vue'
 
   Vue.component('my-detail-row', DetailRow)
+  Vue.component('filter-bar',FilterBar)
 
   export default {
     name: 'hello',
