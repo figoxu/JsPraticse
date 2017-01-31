@@ -13,6 +13,7 @@
               :fields="fields"
               pagination-path=""
               :per-page="10"
+              :sort-order="sortOrder"
               @vuetable:pagination-data="onPaginationData"
     ></vuetable>
     <div class="vuetable-pagination ui basic segment grid">
@@ -44,6 +45,13 @@
           ascendingIcon: 'glyphicon glyphicon-chevron-up',
           descendingIcon: 'glyphicon glyphicon-chevron-down'
         },
+        sortOrder: [
+          {
+            field: 'name',
+            sortField: 'name',
+            direction: 'desc' //asc/desc
+          }
+        ],
         fields: [
           {
             name:'name',
