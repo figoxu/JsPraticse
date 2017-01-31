@@ -3,11 +3,6 @@
     <h1>{{ msg }}</h1>
     <div class="vuetable-pagination ui basic segment grid">
       <filter-bar></filter-bar>
-      <vuetable-pagination-info ref="paginationInfoTop"
-      ></vuetable-pagination-info>
-      <vuetable-pagination ref="paginationTop"
-                           @vuetable-pagination:change-page="onChangePage"
-      ></vuetable-pagination>
     </div>
     <vuetable ref="vuetable"
               api-url="http://vuetable.ratiw.net/api/users"
@@ -137,8 +132,6 @@
         return moment(value, "YYYY-MM-DD").format(fmt)
       },
       onPaginationData (data) {
-        this.$refs.paginationTop.setPaginationData(data)
-        this.$refs.paginationInfoTop.setPaginationData(data)
         this.$refs.pagination.setPaginationData(data)
         this.$refs.paginationInfo.setPaginationData(data)
       },
