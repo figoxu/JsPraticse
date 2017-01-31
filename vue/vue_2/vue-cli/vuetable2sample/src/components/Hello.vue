@@ -7,9 +7,13 @@
               pagination-path=""
               @vuetable:pagination-data="onPaginationData"
     ></vuetable>
-    <vuetable-pagination ref="pagination"
-                         @vuetable-pagination:change-page="onChangePage"
-    ></vuetable-pagination>
+    <div class="vuetable-pagination ui basic segment grid">
+      <vuetable-pagination-info ref="paginationInfo"
+      ></vuetable-pagination-info>
+      <vuetable-pagination ref="pagination"
+                           @vuetable-pagination:change-page="onChangePage"
+      ></vuetable-pagination>
+    </div>
   </div>
 
 
@@ -18,6 +22,7 @@
 <script>
   import Vuetable from 'vuetable-2/src/components/Vuetable'
   import VuetablePagination from 'vuetable-2/src/components/VuetablePagination.vue'
+  import VuetablePaginationInfo from 'vuetable-2/src/components/VuetablePaginationInfo'
   import accounting from 'accounting'
   import moment from 'moment'
 
@@ -71,7 +76,9 @@
       }
     },
     components: {
-      Vuetable, VuetablePagination
+      Vuetable,
+      VuetablePagination,
+      VuetablePaginationInfo
     },
     methods: {
       allcap(value) {
@@ -94,6 +101,7 @@
       },
       onPaginationData (data) {
         this.$refs.pagination.setPaginationData(data)
+        this.$refs.paginationInfo.setPaginationData(data)
       },
       onChangePage (page) {
         this.$refs.vuetable.changePage(page)
