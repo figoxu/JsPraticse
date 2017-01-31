@@ -21,7 +21,17 @@ export default {
       msg: 'Welcome to Your Vue.js App',
       fields: [
         'name', 'email', 'birthdate',
-        'address.line1', 'address.line2', 'address.zipcode'
+        {
+          name:'address.line1',
+          title:'家庭住宅1'
+        },
+        {
+          name:'address.line2',
+            title:'家庭住宅2'
+        }, {
+          name:'address.zipcode',
+            title:'邮政编码'
+    }
       ]
     }
   },
