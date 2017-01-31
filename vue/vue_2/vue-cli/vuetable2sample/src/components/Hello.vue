@@ -48,7 +48,8 @@
             name: 'salary',
             titleClass: 'center aligned',
             dataClass: 'right aligned',
-            callback: 'formatNumber'
+            callback: 'formatNumber',
+            visible: false
           }, {
             name: 'birthdate',
             titleClass: 'center aligned',
