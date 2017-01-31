@@ -23,14 +23,20 @@ export default {
         'name', 'email', 'birthdate',
         {
           name:'address.line1',
-          title:'家庭住宅1'
+          title:'家庭住宅1',
+          titleClass: 'left aligned',
+          dataClass: 'left aligned'
         },
         {
           name:'address.line2',
-            title:'家庭住宅2'
+            title:'家庭住宅2',
+          titleClass: 'center aligned',
+          dataClass: 'center aligned'
         }, {
           name:'address.zipcode',
-            title:'邮政编码'
+            title:'邮政编码',
+          titleClass: 'right aligned',
+          dataClass: 'right aligned'
     }
       ]
     }
