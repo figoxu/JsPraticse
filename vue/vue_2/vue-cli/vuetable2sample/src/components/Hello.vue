@@ -10,6 +10,7 @@
               pagination-path=""
               :per-page="10"
               :sort-order="sortOrder"
+              :append-params="moreParams"
               @vuetable:pagination-data="onPaginationData"
               detail-row-component="my-detail-row"
               @vuetable:cell-clicked="onCellClicked"
@@ -35,7 +36,11 @@
   import DetailRow from './DetailRow'
   import FilterBar from './FilterBar'
   import Vue from 'vue'
+  import VueEvents from 'vue-events'
 
+
+
+  Vue.use(VueEvents);
   Vue.component('my-detail-row', DetailRow)
   Vue.component('filter-bar',FilterBar)
 
@@ -48,14 +53,15 @@
           ascendingIcon: 'glyphicon glyphicon-chevron-up',
           descendingIcon: 'glyphicon glyphicon-chevron-down'
         },
-        sortOrder: [
-          {
-            field: 'name',
-            sortField: 'name',
-            direction: 'desc' //asc/desc
-          }
-        ],
-        fields: [
+      sortOrder: [
+        {
+          field: 'name',
+          sortField: 'name',
+          direction: 'desc' //asc/desc
+        }
+      ],
+      moreParams: {},
+      fields: [
           {
             name:'name',
             sortField:'name'
@@ -141,6 +147,19 @@
       onCellClicked(data, field, event){
         console.log('cellClicked: ',field.name)
         this.$refs.vuetable.toggleDetailRow(data.id)
+      }
+    },
+    events:{
+      'filter-set' (filterText){
+        this.moreParams = {
+          'filter':filterText
+        }
+        Vue.nextTick( () => this.$refs.vuetable.refresh() )
+      },
+      'filter-reset' (){
+        this.moreParams = {}
+        this.$refs.vuetable.refresh()
+        Vue.nextTick( () => this.$refs.vuetable.refresh())
       }
     }
   }

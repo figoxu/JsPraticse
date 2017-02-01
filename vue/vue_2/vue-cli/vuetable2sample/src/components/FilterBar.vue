@@ -24,12 +24,12 @@
       }
     },
     methods:{
-      doFilter() {
-        console.log("doFilter:",this.filterText)
+      doFilter () {
+        this.$events.fire('filter-set', this.filterText)
       },
-      resetFilter() {
-        this.filterText = ''
-        console.log('resetFilter')
+      resetFilter () {
+        this.filterText = ''  // clear the text in text input
+        this.$events.fire('filter-reset')
       }
     }
   }
