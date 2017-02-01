@@ -1,5 +1,5 @@
 <template>
-  <div @click="onClick">
+  <div @click="onclick">
     <div class="inline field">
       <label>Name:</label>
       <span>{{rowData.name}}</span>
