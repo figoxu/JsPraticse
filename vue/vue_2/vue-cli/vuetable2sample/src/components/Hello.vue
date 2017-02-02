@@ -37,12 +37,14 @@
   import FilterBar from './FilterBar'
   import Vue from 'vue'
   import VueEvents from 'vue-events'
+  import CustomActions from './CustomActions'
 
 
 
   Vue.use(VueEvents);
   Vue.component('my-detail-row', DetailRow)
   Vue.component('filter-bar',FilterBar)
+  Vue.component('custom-actions',CustomActions)
 
   export default {
     name: 'hello',
@@ -93,23 +95,29 @@
             dataClass: 'center aligned',
             callback: 'formatDate|DD-MM-YYYY'
           },
-          {
-            name: 'address.line1',
-            title: '家庭住宅1',
-            titleClass: 'left aligned',
-            dataClass: 'left aligned'
-          },
-          {
-            name: 'address.line2',
-            title: '家庭住宅2',
-            titleClass: 'center aligned',
-            dataClass: 'center aligned'
-          }, {
-            name: 'address.zipcode',
-            title: '邮政编码',
-            titleClass: 'right aligned',
-            dataClass: 'right aligned'
-          }
+//          {
+//            name: 'address.line1',
+//            title: '家庭住宅1',
+//            titleClass: 'left aligned',
+//            dataClass: 'left aligned'
+//          },
+//          {
+//            name: 'address.line2',
+//            title: '家庭住宅2',
+//            titleClass: 'center aligned',
+//            dataClass: 'center aligned'
+//          }, {
+//            name: 'address.zipcode',
+//            title: '邮政编码',
+//            titleClass: 'right aligned',
+//            dataClass: 'right aligned'
+//          },
+        {
+            name:'__component:custom-actions',
+            title:'Actions',
+          titleClass:'center aligned',
+          dataClass:'center aligned'
+        }
         ]
       }
     },
