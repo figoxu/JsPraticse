@@ -10,15 +10,16 @@
   },
   "dependencies": {
     "vue": "^2.1.0",
-    "vuetable-2":"1.2.0",
-    "accounting":"0.4.1",
-    "moment":"2.17.1",
-    "vue-events": "vue-2.x"
+    "vuetable-2": "1.2.0",
+    "accounting": "0.4.1",
+    "moment": "2.17.1",
+    "vue-events": "vue-2.x",
+    "vue-bulma-modal": "1.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",
-    "babel-core": "^6.0.0",
-    "babel-loader": "^6.0.0",
+    "babel-core": "^6.22.1",
+    "babel-loader": "^6.2.10",
     "babel-plugin-transform-runtime": "^6.0.0",
     "babel-preset-es2015": "^6.0.0",
     "babel-preset-stage-2": "^6.0.0",
@@ -35,9 +36,9 @@
     "html-webpack-plugin": "^2.8.1",
     "http-proxy-middleware": "^0.17.2",
     "json-loader": "^0.5.4",
-    "semver": "^5.3.0",
     "opn": "^4.0.2",
     "ora": "^0.3.0",
+    "semver": "^5.3.0",
     "shelljs": "^0.7.4",
     "url-loader": "^0.5.7",
     "vue-loader": "^10.0.0",

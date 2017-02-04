@@ -22,6 +22,20 @@
                            @vuetable-pagination:change-page="onChangePage"
       ></vuetable-pagination>
     </div>
+
+
+    <image-modal :visible="true" transition="roll">
+      <p class="image is-4by3">
+        <img src="http://placehold.it/1280x960">
+      </p>
+    </image-modal>
+    <card-modal :visible="true" :title="title" transition="zoom">
+      <div class="content has-text-centered">
+        <img src="http://placehold.it/1280x960" height="120" alt="Vue Admin">
+      </div>
+    </card-modal>
+
+
   </div>
 
 
@@ -38,8 +52,10 @@
   import Vue from 'vue'
   import VueEvents from 'vue-events'
   import CustomActions from './CustomActions'
-
-
+  import  Modal  from 'vue-bulma-modal/Modal'
+//  import  BaseModal  from 'vue-bulma-modal/BaseModal'
+  import  CardModal from 'vue-bulma-modal/CardModal'
+  import  ImageModals  from 'vue-bulma-modal/ImageModals'
 
   Vue.use(VueEvents);
   Vue.component('my-detail-row', DetailRow)
@@ -124,7 +140,10 @@
     components: {
       Vuetable,
       VuetablePagination,
-      VuetablePaginationInfo
+      VuetablePaginationInfo,
+      Modal,
+      ImageModal,
+      CardModal
     },
     methods: {
       allcap(value) {
