@@ -2,21 +2,26 @@
   <div id="app">
     <img src="./assets/logo.png">
     <hello></hello>
+    <modal></modal>
   </div>
 </template>
 
 <script>
 import Hello from './components/Hello'
+import Modal from './components/Modal'
+
 
 export default {
   name: 'app',
   components: {
-    Hello
+    Hello,
+    Modal
   }
 }
 </script>
 
-<style>
+<style lang="scss">
+  @import '~bulma';
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
