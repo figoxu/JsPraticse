@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Hello from 'components/Hello'
 import UiAlert from 'components/UiAlert'
+import UiFileupload from 'components/UiFileupload'
 import KeenUI from 'keen-ui';
 
 Vue.use(KeenUI);
@@ -17,6 +18,10 @@ export default new Router({
       path:'/Uialert',
       name:'/uialert',
       component:UiAlert
+    },{
+      path:'/UiFileupload',
+      name:'/UiFileupload',
+      component:UiFileupload
     }
   ]
 })
