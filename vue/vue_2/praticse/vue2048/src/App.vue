@@ -1,17 +1,19 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <hello></hello>
+    <boardview></boardview>
   </div>
 </template>
 
 <script>
-import Hello from './components/Hello'
+import Boardview from './components/BoardView.vue'
+import './assets/scss/main.scss'
+import './assets/scss/style.scss'
+
 
 export default {
   name: 'app',
   components: {
-    Hello
+    Boardview
   }
 }
 </script>
