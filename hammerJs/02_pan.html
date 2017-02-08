@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://hammerjs.github.io/dist/hammer.js"></script>
+    <style>
+        #myElement {
+            background: silver;
+            height: 300px;
+            text-align: center;
+            font: 30px/300px Helvetica, Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+<div id="myElement"></div>
+
+<script type="text/javascript">
+    var myElement = document.getElementById('myElement');
+    var mc = new Hammer(myElement);
+    mc.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+    mc.on("panleft panright panup pandown tap press", function(ev) {
+        myElement.textContent = ev.type +" gesture detected.";
+    });
+</script>
+</body>
+</html>
