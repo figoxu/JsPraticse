@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://hammerjs.github.io/dist/hammer.js"></script>
+    <style>
+        #myElement {
+            background: silver;
+            height: 300px;
+            text-align: center;
+            font: 30px/300px Helvetica, Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+<div id="myElement"></div>
+<script type="text/javascript">
+    var myElement = document.getElementById('myElement');
+
+    var mc = new Hammer.Manager(myElement);
+
+    var pinch = new Hammer.Pinch();
+    var rotate = new Hammer.Rotate();
+
+    pinch.recognizeWith(rotate);
+
+    // add to the Manager
+    mc.add([pinch, rotate]);
+    mc.on("pinch rotate", function(ev) {
+        myElement.textContent += ev.type +" ";
+    });
+</script>
+</body>
+</html>

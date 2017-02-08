@@ -6,4 +6,13 @@ panright 右滑
 
 
 
+cnpm install http-server -g
+
+Usage:
+
+http-server [path] [options]
+
+Sample:
+
+http-server ./
 
