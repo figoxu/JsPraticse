@@ -13,11 +13,14 @@
     import Cell from './Cell.vue'
     import TileView from './TileView.vue'
     import GameEndOverlay from './GameEndOverlay.vue'
+    import RWLock from 'rwlock'
 
     export default {
         data(){
           return {
-              board:new Board()
+              board:new Board(),
+              guestureLock:false,
+            lock : new RWLock(),
           }
         },
         mounted(){
@@ -25,21 +28,32 @@
           var mc = new Hammer(this.$el);
           mc.get('pan').set({ direction: Hammer.DIRECTION_ALL });
           var that = this;
+          var lock = new RWLock()
           mc.on("panleft panright panup pandown", function(ev) {
-            switch ( ev.type ){
-              case 'panleft':
-                that.board.move(0);
-                break;
-              case 'panup':
-                that.board.move(1);
-                break;
-              case 'panright':
-                that.board.move(2);
-                break;
-              case 'pandown':
-                that.board.move(3);
-                break;
-            }
+            lock.writeLock('lockname',function (release) {
+              if( !that.guestureLock ){
+                that.writeGuestureLock(true)
+                switch ( ev.type ){
+                  case 'panleft':
+                    that.board.move(0);
+                    break;
+                  case 'panup':
+                    that.board.move(1);
+                    break;
+                  case 'panright':
+                    that.board.move(2);
+                    break;
+                  case 'pandown':
+                    that.board.move(3);
+                    break;
+                }
+              }
+              release();
+              window.setTimeout(function () {
+                that.writeGuestureLock(false)
+              },1000);
+            })
+
           });
 
         },
@@ -53,6 +67,13 @@
           }
         },
         methods:{
+            writeGuestureLock(flag){
+              var that = this
+              this.lock.writeLock('guesture',function(release){
+                that.guestureLock = flag
+                release()
+              })
+            },
             handleKeyDown(event){
                 if (this.board.hasWon()) {
                     return;
@@ -62,9 +83,6 @@
                     var direction = event.keyCode - 37;
                     this.board.move(direction)
                 }
-
-
-
             },
             onRestart(){
                 this.board = new Board()
