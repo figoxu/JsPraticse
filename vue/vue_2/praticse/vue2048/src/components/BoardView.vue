@@ -21,7 +21,27 @@
           }
         },
         mounted(){
-            window.addEventListener('keydown', this.handleKeyDown.bind(this));
+          window.addEventListener('keydown', this.handleKeyDown.bind(this));
+          var mc = new Hammer(this.$el);
+          mc.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+          var that = this;
+          mc.on("panleft panright panup pandown", function(ev) {
+            switch ( ev.type ){
+              case 'panleft':
+                that.board.move(0);
+                break;
+              case 'panup':
+                that.board.move(1);
+                break;
+              case 'panright':
+                that.board.move(2);
+                break;
+              case 'pandown':
+                that.board.move(3);
+                break;
+            }
+          });
+
         },
         beforeDestroy(){
             window.removeEventListener('keydown', this.handleKeyDown.bind(this));
@@ -42,6 +62,9 @@
                     var direction = event.keyCode - 37;
                     this.board.move(direction)
                 }
+
+
+
             },
             onRestart(){
                 this.board = new Board()
