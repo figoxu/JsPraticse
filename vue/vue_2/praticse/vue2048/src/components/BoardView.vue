@@ -18,9 +18,11 @@
     export default {
         data(){
           return {
-              board:new Board(),
-              guestureLock:false,
+            board:new Board(),
+            guestureLock:false,
             lock : new RWLock(),
+            lastOpTime:new Date(),
+            lastDirection:-1,
           }
         },
         mounted(){
@@ -30,28 +32,32 @@
           var that = this;
           var lock = new RWLock()
           mc.on("panleft panright panup pandown", function(ev) {
+            if(!that.checkTimeInLaw()){
+              return
+            }
+            var direction=-1
+            switch ( ev.type ){
+              case 'panleft': direction=0; break;
+              case 'panup': direction=1; break;
+              case 'panright': direction=2; break;
+              case 'pandown': direction=3; break;
+            }
+            var weight = 1
+            if(direction==that.lastDirection){
+              weight = 2
+            }
+            if(ev.distance<25*weight){
+              return
+            }
             lock.writeLock('lockname',function (release) {
-              if( !that.guestureLock ){
-                that.writeGuestureLock(true)
-                switch ( ev.type ){
-                  case 'panleft':
-                    that.board.move(0);
-                    break;
-                  case 'panup':
-                    that.board.move(1);
-                    break;
-                  case 'panright':
-                    that.board.move(2);
-                    break;
-                  case 'pandown':
-                    that.board.move(3);
-                    break;
-                }
-              }
-              release();
-              window.setTimeout(function () {
+              if(!that.guestureLock  ){
+                that.writeGuestureLock(true);
+                that.board.move(direction);
+                that.lastOpTime=new Date();
+                that.lastDirection=direction;
                 that.writeGuestureLock(false)
-              },1000);
+                release();
+              }
             })
 
           });
@@ -67,26 +73,30 @@
           }
         },
         methods:{
-            writeGuestureLock(flag){
-              var that = this
-              this.lock.writeLock('guesture',function(release){
-                that.guestureLock = flag
-                release()
-              })
-            },
-            handleKeyDown(event){
-                if (this.board.hasWon()) {
-                    return;
-                }
-                if (event.keyCode >= 37 && event.keyCode <= 40) {
-                    event.preventDefault();
-                    var direction = event.keyCode - 37;
-                    this.board.move(direction)
-                }
-            },
-            onRestart(){
-                this.board = new Board()
+          checkTimeInLaw(){
+            var d = new Date()
+            if( d.getTime()-this.lastOpTime.getTime()>500 ){
+              return true;
             }
+            return false;
+          },
+          writeGuestureLock(flag){
+            var that = this
+            that.guestureLock = flag
+          },
+          handleKeyDown(event){
+            if (this.board.hasWon()) {
+                return;
+            }
+            if (event.keyCode >= 37 && event.keyCode <= 40) {
+                event.preventDefault();
+                var direction = event.keyCode - 37;
+                this.board.move(direction)
+            }
+          },
+          onRestart(){
+            this.board = new Board()
+          }
         },
         components: {
             Cell,
