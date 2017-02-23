@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="height: 100%;">
+
+<head>
+    <title>input框获选中位置插入数据</title>
+</head>
+<br/><br/>
+<body style="height: 100%;margin: 0px;padding: 0px;">
+<input style="width:300px;margin: 0px;padding: 0px;"  type="text" id="test1">
+<label id="insertData1" style="font-size: 0.2rem; border: 1px solid; border-radius: 5px;" onclick="insertTest('hello', document.getElementById('test1'))">插入</label>
+<br/><br/>
+<textarea style="height: 200px;width:300px;margin: 0px;padding: 0px;" name="" id="test2" cols="30" rows="10"></textarea>
+<label id="insertData2" style="font-size: 0.2rem; border: 1px solid; border-radius: 5px;" onclick="insertTest('hello', document.getElementById('test2'))">插入</label>
+
+<!-- PlanB 可编辑div框 -->
+<!--<div id="test3" contenteditable="true" style="width: 200px;height: 200px;border: 1px solid;margin: 5px;border-radius: 10px;"></div>
+<label id="insertData2" style="font-size: 0.2rem; border: 1px solid; border-radius: 5px;" onclick="insertTest('hello', document.getElementById('test3'))">插入</label>-->
+
+<script type="text/javascript">
+    function doGetCaretPosition(oField) {
+        var iCaretPos = 0;
+        if (document.selection) {
+            oField.focus();
+            var oSel = document.selection.createRange();
+            oSel.moveStart('character', -oField.value.length);
+            iCaretPos = oSel.text.length;
+        } else if (oField.selectionStart || oField.selectionStart == '0') {
+            iCaretPos = oField.selectionStart;
+        } else if (window.getSelection) {
+            console.log('window=>>', window.getSelection());
+        }
+        return iCaretPos;
+    }
+
+    function insertTest(data, inputText) {
+        var position = doGetCaretPosition(inputText);
+        var value = inputText.value || inputText.innerHTML;
+        var valueLength = value.length;
+        inputText.value = value.substring(0, position) + data + (position === valueLength ? '' : value.substring(position, valueLength - 1));
+    }
+</script>
+</body>
+
+</html>
