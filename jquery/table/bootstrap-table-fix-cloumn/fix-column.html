@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fixed Columns</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/bootstrap-table.css">
+    <link rel="stylesheet" href="./css/bootstrap-table-fixed-columns.css">
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/bootstrap-table.js"></script>
+    <script src="./js/bootstrap-table-fixed-columns.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1>Fixed Columns</h1>
+    <hr>
+    <div class="toolbar form-inline">
+        <span>Fixed Number: </span>
+        <input class="form-control" id="fixedNumber" type="number" value="1" min="1" max="5">
+    </div>
+    <table id="table" data-height="400" data-show-columns="true"></table>
+</div>
+<script>
+    var $table = $('#table');
+
+    $(function () {
+        buildTable($table, 20, 20);
+
+        $('#fixedNumber').change(function () {
+            buildTable($table, 20, 20);
+        });
+    });
+
+    function buildTable($el, cells, rows) {
+        var i, j, row,
+                columns = [],
+                data = [];
+
+        for (i = 0; i < cells; i++) {
+            columns.push({
+                field: 'field' + i,
+                title: 'Cell' + i,
+                sortable: true
+            });
+        }
+        for (i = 0; i < rows; i++) {
+            row = {};
+            for (j = 0; j < cells; j++) {
+                row['field' + j] = 'Row-' + i + '-' + j;
+            }
+            data.push(row);
+        }
+        $el.bootstrapTable('destroy').bootstrapTable({
+            columns: columns,
+            data: data,
+            search: true,
+            toolbar: '.toolbar',
+            fixedColumns: true,
+            fixedNumber: +$('#fixedNumber').val()
+        });
+    }
+</script>
+</body>
+</html>
