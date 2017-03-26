@@ -5,27 +5,21 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/bootstrap-table.css">
+    <link rel="stylesheet" href="./css/bootstrap-table-fixed-columns.css">
     <script src="./js/jquery.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
     <script src="./js/bootstrap-table.js"></script>
+    <script src="./js/bootstrap-table-fixed-columns.js"></script>
 </head>
 <body>
 <div class="container">
     <h1>Server Side Pagination</h1>
     <p>Use <code>sidePagination: 'server'</code> option to define the server side pagination of table.</p>
-    <table id="table"
-           data-toggle="table"
-           data-url="./mock/serverside.data"
-           data-height="400"
-           data-side-pagination="server"
-           data-pagination="true"
-           data-page-list="[5, 10, 20, 50, 100, 200]"
-           data-search="true">
+    <table id="table" >
         <thead>
         <tr>
-            <th data-field="state" data-checkbox="true"></th>
-            <th data-field="id">ID</th>
-            <th data-field="name">Item Name</th>
+             <th data-field="id">ID</th>
+            <th data-field="name" width="3000px;">Item Name</th>
             <th data-field="price">Item Price</th>
         </tr>
         </thead>
@@ -35,6 +29,27 @@
     var $table = $('#table');
 
     $(function () {
+
+        $('#table').bootstrapTable({
+            url: "./mock/serverside.data",
+            columns: [{
+                field: 'id',
+                title: 'Item ID'
+            }, {
+                field: 'name',
+                title: 'Item Name'
+            }, {
+                field: 'price',
+                title: 'Item Price'
+            }],
+            height:400,
+            sidePagination:"server",
+            pagination:true,
+            pageList:[5, 10, 20, 50, 100, 200],
+            toggle:"table",
+            fixedColumns: true,
+            fixedNumber:2
+        });
     });
 </script>
 </body>
