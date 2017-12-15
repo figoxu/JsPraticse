@@ -41,15 +41,22 @@
         cbChain = new CallBackChain();
         cbChain.append(function () {
             console.log('a')
+            cbChain.context.hello="world";
         })
         cbChain.append(function () {
-            console.log('b')
+            console.log(cbChain.context.hello)
+            cbChain.context.hello="hi"
+            cbChain.context.foo='bar'
         })
         cbChain.append(function () {
-            console.log('c')
+            c = cbChain.context
+            console.log(c.hello,"  ",c.foo)
+            c.world="china"
+            c.foo = "redis-cli"
         })
         cbChain.append(function () {
-            console.log('d')
+            c = cbChain.context
+            console.log(c.hello," ",c.world,"  ",c.foo)
         })
         cbChain.execute();
         console.log("===>华丽的分割线<===");
