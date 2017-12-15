@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CallBack Chain</title>
+    <script type="text/javascript">
+
+    </script>
+</head>
+<body>
+<button onclick="test()">测试</button>
+<script type="text/javascript">
+    function test() {
+        function a(next) {
+            console.log('a');
+            next(1);
+        }
+
+        function b(next) {
+            console.log('b');
+            next(2);
+        }
+
+        function c(next) {
+            console.log('c');
+            next(3);
+        }
+
+        function d(next) {
+            console.log('d');
+            next(4);
+        }
+
+
+        var fns = [a,b,c,d];
+        function chain(fn) {
+            if(fn) {
+                fn(() => chain(fns.shift()));
+            }
+        }
+
+        chain(fns.shift());
+    }
+</script>
+</body>
+</html>
