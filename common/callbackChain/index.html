@@ -4,44 +4,54 @@
     <meta charset="UTF-8">
     <title>CallBack Chain</title>
     <script type="text/javascript">
-
+        function CallBackChain() {
+            this.context = {}
+            this.fns = new Array()
+        }
+        CallBackChain.prototype.next = function () {
+            var fn2 = this.fns.shift();
+            return fn2
+        }
+        CallBackChain.prototype.append=function (cb) {
+            var that=this;
+            var wrapAsChain = function () {
+                cb()
+                var next = that.next();
+                if(next){
+                    next()
+                }
+            }
+            this.fns.push(wrapAsChain)
+        }
+        CallBackChain.prototype.execute=function () {
+            var copyFns = new Array()
+            for(var i=0;i<this.fns.length;i++){
+                copyFns.push(this.fns[i])
+            }
+            var fn = this.next();
+            fn();
+            this.fns = copyFns
+        }
     </script>
 </head>
 <body>
 <button onclick="test()">测试</button>
 <script type="text/javascript">
     function test() {
-        function a(next) {
-            console.log('a');
-            next(1);
-        }
-
-        function b(next) {
-            console.log('b');
-            next(2);
-        }
-
-        function c(next) {
-            console.log('c');
-            next(3);
-        }
-
-        function d(next) {
-            console.log('d');
-            next(4);
-        }
-
-
-        var fns = [a,b,c,d];
-        function chain(fn) {
-            if(fn) {
-                fn(function () {
-                    return chain(fns.shift());
-                });
-            }
-        }
-
-        chain(fns.shift());
+        cbChain = new CallBackChain();
+        cbChain.append(function () {
+            console.log('a')
+        })
+        cbChain.append(function () {
+            console.log('b')
+        })
+        cbChain.append(function () {
+            console.log('c')
+        })
+        cbChain.append(function () {
+            console.log('d')
+        })
+        cbChain.execute();
     }
 </script>
 </body>
