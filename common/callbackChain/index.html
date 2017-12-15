@@ -12,13 +12,19 @@
             var fn2 = this.fns.shift();
             return fn2
         }
-        CallBackChain.prototype.append=function (cb) {
+        CallBackChain.prototype.append=function (cb,async) {
             var that=this;
             var wrapAsChain = function () {
-                cb()
                 var next = that.next();
                 if(next){
-                    next()
+                    if(async){
+                        cb(next)
+                    }else{
+                        cb()
+                        next()
+                    }
+                }else{
+                    cb()
                 }
             }
             this.fns.push(wrapAsChain)
@@ -43,24 +49,32 @@
             console.log('a')
             cbChain.context.hello="world";
         })
-        cbChain.append(function () {
+        cbChain.append(function (cb) {
+            console.log('b')
             console.log(cbChain.context.hello)
             cbChain.context.hello="hi"
             cbChain.context.foo='bar'
-        })
+            setTimeout(function () {
+               console.log("when i returned ?")
+                cb()
+            },2000)
+            console.log('return right now')
+        },true)
         cbChain.append(function () {
+            console.log('c')
             c = cbChain.context
             console.log(c.hello,"  ",c.foo)
             c.world="china"
             c.foo = "redis-cli"
         })
         cbChain.append(function () {
+            console.log('d')
             c = cbChain.context
             console.log(c.hello," ",c.world,"  ",c.foo)
+            console.log("===>执行结束<===");
         })
         cbChain.execute();
-        console.log("===>华丽的分割线<===");
-        cbChain.execute();
+        //todo 使用了async,只有在callback才能知道  最终执行是否结束
     }
 </script>
 </body>
