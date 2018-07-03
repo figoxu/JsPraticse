@@ -11,15 +11,25 @@
             obj.duration = chkDuration
             obj.cb = timeOutCb
             obj.intervalId = 0
+            obj.reset=function(liveTime){
+                obj.outTime = new Date().getTime() + liveTime
+                window.clearInterval(obj.intervalId)
+                obj.intervalId=0
+                obj.countDown()
+            }
             obj.outTime = new Date().getTime() + liveTime
-            obj.intervalId = window.setInterval(function () {
-                if (new Date().getTime() > obj.outTime) {
-                    window.clearInterval(obj.intervalId)
-                    obj.cb()
-                }else{
-                    console.log("例行检查")
-                }
-            }, chkDuration)
+            obj.countDown=function(){
+                obj.intervalId = window.setInterval(function () {
+                    if (new Date().getTime() > obj.outTime) {
+                        window.clearInterval(obj.intervalId)
+                        obj.intervalId=0
+                        obj.cb()
+                    }else{
+                        console.log("例行检查")
+                    }
+                }, chkDuration)
+            }
+            obj.countDown()
             return obj
         }
         function to_01() {
@@ -27,10 +37,21 @@
                 console.log("超时")
             })
         }
+        function to_02() {
+
+            var tok = new TimeOutChk(1000,3*1000+100,function () {
+                console.log("超时")
+            })
+            window.setTimeout(function () {
+                console.log("续时7秒")
+                tok.reset(1000*7+100)
+            },3*1000+100)
+        }
     </script>
 </head>
 <body>
-<input type="button" id="maskbtn"  value="实验超时动作" onclick="to_01()"/>
+<input type="button" value="实验超时动作" onclick="to_01()"/>
+<input type="button" value="实验续时动作" onclick="to_02()"/>
 
 </body>
 </html>
