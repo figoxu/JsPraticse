@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        // chkDuration : 单位毫秒  检查时长
+        // liveTime    : 单位毫秒  超时时长
+        function TimeOutChk(chkDuration, liveTime, timeOutCb) {
+            var obj = new Object()
+            obj.duration = chkDuration
+            obj.cb = timeOutCb
+            obj.intervalId = 0
+            obj.outTime = new Date().getTime() + liveTime
+            obj.intervalId = window.setInterval(function () {
+                if (new Date().getTime() > obj.outTime) {
+                    window.clearInterval(obj.intervalId)
+                    obj.cb()
+                }else{
+                    console.log("例行检查")
+                }
+            }, chkDuration)
+            return obj
+        }
+        function to_01() {
+            var tok = new TimeOutChk(1000,20*1000+100,function () {
+                console.log("超时")
+            })
+        }
+    </script>
+</head>
+<body>
+<input type="button" id="maskbtn"  value="实验超时动作" onclick="to_01()"/>
+
+</body>
+</html>
